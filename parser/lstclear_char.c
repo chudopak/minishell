@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   overall.h                                          :+:      :+:    :+:   */
+/*   lstclear_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 19:04:54 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 16:57:47 by pmarash          ###   ########.fr       */
+/*   Created: 2021/04/14 16:14:37 by pmarash           #+#    #+#             */
+/*   Updated: 2021/04/14 18:54:20 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OVERALL_H
-# define OVERALL_H
+#include "../headers/overall.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include "parser.h"
-# include "../libft/libft.h"
+void	lstclear_char(t_lst **lst)
+{
+	t_lst	*tmp;
 
-#endif
+	if (*lst)
+	{
+		tmp = *lst;
+		while (tmp)
+		{
+			tmp = tmp->next;
+			free((*lst)->str);
+			free(*lst);
+			*lst = tmp;
+		}
+		*lst = NULL;
+	}
+}

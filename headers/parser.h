@@ -6,7 +6,7 @@
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:55:33 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 15:44:11 by pmarash          ###   ########.fr       */
+/*   Updated: 2021/04/15 18:05:53 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		environment_to_struct(t_lst **env, char **envp);
 t_lst	*lstnew_char(char *content);
 void	lst_add_back(t_lst **lst, t_lst *new);
 void	lstclear_char(t_lst **lst);
-int		char_join(char **arg, char symbol, int arg_size);
-
+char	*char_join(char *arg, char symbol, int arg_size);
+int		parser(char *data, t_lst **env);
 
 #endif

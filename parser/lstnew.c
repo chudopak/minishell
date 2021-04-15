@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   overall.h                                          :+:      :+:    :+:   */
+/*   lstnew.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 19:04:54 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 16:57:47 by pmarash          ###   ########.fr       */
+/*   Created: 2021/04/13 19:27:43 by pmarash           #+#    #+#             */
+/*   Updated: 2021/04/15 17:13:26 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OVERALL_H
-# define OVERALL_H
+#include "../headers/overall.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include "parser.h"
-# include "../libft/libft.h"
+t_lst	*lstnew_char(char *content)
+{
+	t_lst	*tmp;
 
-#endif
+	tmp = (t_lst *)malloc(sizeof(t_lst));
+	if (!tmp)
+		return (0);
+	if (!content)
+		tmp->str = NULL;
+	else
+		tmp->str = ft_strdup(content);
+	tmp->next = NULL;
+	return (tmp);
+}
