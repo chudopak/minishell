@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   overall.h                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 19:04:54 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 18:42:25 by pmarash          ###   ########.fr       */
+/*   Created: 2021/04/15 16:50:32 by vping             #+#    #+#             */
+/*   Updated: 2021/04/15 16:51:32 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OVERALL_H
-# define OVERALL_H
+#include "../headers/overall.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <term.h>
-# include "parser.h"
-# include "../libft/libft.h"
+void ft_pwd(void)
+{
+	char str[100];
 
-
-void	ft_pwd(void);
-
-#endif
+	getcwd(str, 100);
+	printf("Current dir is %s\n", str);
+}
