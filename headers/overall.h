@@ -14,7 +14,13 @@
 # define OVERALL_H
 
 # include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <term.h>
 # include "parser.h"
 # include "../libft/libft.h"
+
+
+void	ft_pwd(void);
 
 #endif
