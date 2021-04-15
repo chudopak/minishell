@@ -22,5 +22,6 @@
 
 
 void	ft_pwd(void);
+void	ft_echo(char *str, int flag_n);
 
 #endif
