@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   overall.h                                          :+:      :+:    :+:   */
+/*   environment_to_struct.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 19:04:54 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 18:42:25 by pmarash          ###   ########.fr       */
+/*   Created: 2021/04/13 19:11:21 by pmarash           #+#    #+#             */
+/*   Updated: 2021/04/15 15:40:23 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OVERALL_H
-# define OVERALL_H
+#include "../headers/overall.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <term.h>
-# include "parser.h"
-# include "../libft/libft.h"
+int	environment_to_struct(t_lst **env, char **envp)
+{
+	t_lst	*tmp;
 
-
-void	ft_pwd(void);
-void	ft_echo(char *str, int flag_n);
-
-#endif
+	while (*envp)
+	{
+		tmp = lstnew_char(*envp);
+		if (!tmp)
+		{
+			lstclear_char(env);
+			return (1);
+		}
+		lst_add_back(env, tmp);
+		envp++;
+	}
+	return (0);
+}
