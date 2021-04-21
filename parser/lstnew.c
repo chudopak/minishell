@@ -6,7 +6,7 @@
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 19:27:43 by pmarash           #+#    #+#             */
-/*   Updated: 2021/04/15 17:13:26 by pmarash          ###   ########.fr       */
+/*   Updated: 2021/04/19 18:45:43 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_lst	*lstnew_char(char *content)
 
 	tmp = (t_lst *)malloc(sizeof(t_lst));
 	if (!tmp)
-		return (0);
+		return (NULL);
 	if (!content)
 		tmp->str = NULL;
 	else
