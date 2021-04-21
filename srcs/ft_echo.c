@@ -1,14 +1,14 @@
 # include "../headers/overall.h"
 
-void ft_echo(char *str, int flag_n)
+void ft_echo(t_all *all)
 {
+	char	*tmp;
+	int 	i;
+	int 	flag_n;
 
-	if (flag_n == 1)
-	{
-		write(0, str, ft_strlen(str));
-		write(0, "\n", 1);
-	}
-	else
-		write(0, str, ft_strlen(str));
+	tmp = all->arg;
+	flag_n = 0;
+	i = 0;
+	if (all->)
 }
 
