@@ -6,8 +6,8 @@ int	cmp_data_to_env(char *s1, char *s2)													//check properly it can be w
 	{
 		if (*s1 != *s2)
 		{
-			if (((*s1 >= ' ' && *s1 <= '/') || (*s1 >= ':' && *s1 <= 62)
-					|| *s1 == 64 || (*s1 >= 91 && *s1 <= 96)
+			if (((*s1 >= ' ' && *s1 <= '/') || (*s1 >= ':' && *s1 <= 64)
+					|| (*s1 >= 91 && *s1 <= 96)
 					|| (*s1 >= 123 && *s1 <= 126)) && *s2 == '=')
 				return (0);
 			else
@@ -91,6 +91,13 @@ int	dollar(char **arg, char **data, int *arg_size, t_lst **env)
 	}
 	else if (*(*data + 1) == '?')
 		return (123412);																//handle $?
+	else if (!*(*data + 1))
+	{
+		*arg = char_join(arg, **data, *arg_size);
+		if (!*arg)
+			return (BAD_MALLOC);
+		(*data)++;
+	}
 	else
 	{
 		if (get_env_ergument(arg, data, arg_size, env))
