@@ -54,6 +54,7 @@ SRC =		ft_atoi.c \
 			ft_strnew.c \
 			ft_strcpy.c \
 			ft_strclear.c \
+			ft_putendl.c \
 
 SRC_B = 	ft_lstnew.c \
 			ft_lstadd_front.c \

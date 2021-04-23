@@ -16,7 +16,13 @@ typedef struct 	s_all
 	char *arg;
 }				t_all;
 
-void	ft_pwd(void);
+typedef struct	s_env
+{
+	char			*value;
+	struct s_env	*next;
+}				t_env;
+
+int		ft_pwd(void);
 int		ft_echo(t_lst *list);
 
 #endif

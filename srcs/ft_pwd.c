@@ -1,9 +1,14 @@
 #include "../headers/overall.h"
 
-void ft_pwd(void)
+int ft_pwd(void)
 {
 	char str[100];
 
-	getcwd(str, 100);
-	printf("Current dir is %s\n", str);
+	if (getcwd(str, 100))
+	{
+		ft_putendl_fd(str, 1);
+		return (1);
+	}
+	else
+		return (0);
 }
