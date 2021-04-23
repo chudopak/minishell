@@ -20,6 +20,8 @@ int ft_echo(t_lst *list)
 	while (list->next)
 	{
 		args[i] = (char *)malloc(ft_strlen(list->str) + 1);
+		if (!args[i])
+			return (-1);
 		args[i] = list->str;
 		args[i][ft_strlen(list->str)] = '\0';
 		list = list->next;
