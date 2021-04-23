@@ -17,6 +17,6 @@ typedef struct 	s_all
 }				t_all;
 
 void	ft_pwd(void);
-void	ft_echo(char *str, int flag_n);
+int		ft_echo(t_lst *list);
 
 #endif
