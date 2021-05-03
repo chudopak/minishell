@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vping <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: chudapak <chudapak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 15:37:12 by vping             #+#    #+#             */
-/*   Updated: 2021/04/14 15:45:15 by vping            ###   ########.fr       */
+/*   Updated: 2021/05/03 18:54:53 by chudapak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ t_list				*ft_lstmap(t_list *lst, \
 char				*ft_strcpy(char *dest, const char *src);
 void				ft_strclear(char **line);
 void				ft_putendl(char *s);
+int					ft_putint(int c);
+int					ft_strcmp(const char *s1, const char *s2);
+
 
 #endif

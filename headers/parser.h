@@ -26,7 +26,7 @@ typedef struct s_lst{
 	int			semicolon;
 }				t_status;*/
 
-int		environment_to_struct(t_lst **env, char **envp);
+void	environment_to_struct(t_lst **env, char **envp);
 t_lst	*lstnew_char(char *content);
 void	lst_add_back(t_lst **lst, t_lst *new);
 void	lstclear_char(t_lst **lst);
