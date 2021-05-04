@@ -25,6 +25,7 @@ int ft_echo(t_lst *list)
 		args[i] = list->str;
 		args[i][ft_strlen(list->str)] = '\0';
 		list = list->next;
+		i++;
 	}
 	flag_n = 0;
 	i = 0;
