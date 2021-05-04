@@ -1,6 +1,6 @@
 #include "../headers/overall.h"
 
-int	environment_to_struct(t_lst **env, char **envp)
+void	environment_to_struct(t_lst **env, char **envp)
 {
 	t_lst	*tmp;
 
@@ -10,10 +10,9 @@ int	environment_to_struct(t_lst **env, char **envp)
 		if (!tmp)
 		{
 			lstclear_char(env);
-			return (1);
+			return ;										//error managment
 		}
 		lst_add_back(env, tmp);
 		envp++;
 	}
-	return (0);
 }

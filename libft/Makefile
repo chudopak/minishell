@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vping <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: chudapak <chudapak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 20:21:58 by vping             #+#    #+#              #
-#    Updated: 2020/11/29 20:49:57 by vping            ###   ########.fr        #
+#    Updated: 2021/05/03 18:55:13 by chudapak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,8 @@ SRC =		ft_atoi.c \
 			ft_strcpy.c \
 			ft_strclear.c \
 			ft_putendl.c \
+			ft_putint.c \
+			ft_strcmp.c \
 
 SRC_B = 	ft_lstnew.c \
 			ft_lstadd_front.c \
