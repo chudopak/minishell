@@ -1,30 +1,5 @@
 #include "../headers/overall.h"
 
-void	add_symbol(t_all *all, char *str, int ret, char *cmd)
-{
-	int	i;
-
-	i = -1;
-	while (all->writen_symblos < ret)
-	{
-		cmd[i] = str[i];
-		all->writen_symblos++;
-	}
-	write(1, str, ret);
-	all->cursor_pos += ret;
-}
-
-void	get_history_comand(t_all *all, char *str)
-{
-	t_all tmp;
-
-	tmp = *all;
-	if (!ft_strcmp(str, "\e[B"))
-		write(1, "UP", 2);													//don't forget
-	else
-		write(1, "DOWN", 4);												//don't forget
-}
-
 int	unprint_symbols(char *str)
 {
 	if (*str < 32 && (*str != '\n' && *str != 3 && *str != 4))
@@ -32,12 +7,40 @@ int	unprint_symbols(char *str)
 	return (0);
 }
 
+void	rm_node(t_all *all)
+{
+	t_history	*tmp;
+
+	tmp = all->head_history->next;
+	tmp->prev = NULL;
+	free(all->head_history);
+	all->head_history = tmp;
+	all->cmd_in_history--;
+}
+
+void	new_history_elem(t_all *all)
+{
+	t_history	*new_node;
+
+	if (all->cmd_in_history > HISTORY_LIMIT)
+		rm_node(all);
+	new_node = malloc(sizeof(t_history));
+	if (!new_node)
+		errors(all, BAD_MALLOC);
+	new_node->prev = all->current_cmd;
+	new_node->cmd = NULL;
+	new_node->next = NULL;
+	all->current_cmd->next = new_node;
+	all->current_cmd = new_node;
+	all->cmd_in_history++;
+}
+
 void	handle_input(t_all *all)
 {
 	char	str[50];
 	int		readed;
-	char	cmd[1000];
 
+	new_history_elem(all);
 	while (1)
 	{
 		readed = read(0, str, 100);
@@ -53,11 +56,17 @@ void	handle_input(t_all *all)
 		else if (unprint_symbols(str))
 			continue ;
 		else if (ft_strcmp(str, "\n"))
-			add_symbol(all, str, readed, cmd);
+		{
+			all->current_cmd->cmd = char_join(&all->current_cmd->cmd,
+					*str, all->writen_symblos);
+			all->writen_symblos++;
+			write(1, str, 1);
+			all->cursor_pos++;
+		}
 		else
 			break ;
 	}
-	cmd[all->writen_symblos] = '\0';
 	all->writen_symblos = 0;
-	parser(cmd, &(all->env));
+	all->stroller = NULL;
+	parser(all->current_cmd->cmd, all);
 }

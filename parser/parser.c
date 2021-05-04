@@ -65,14 +65,41 @@ static void test_parsed(t_lst *args)
 	printf("%s\n", args->str);
 }
 
+//static int	extended_symbols(t_all *all, char **data, int *arg_size, t_lst **last_arg)
+//{
+//	if (**data == '|' || **data == ';')
+//		return (1);												//execve
+//	if (**data == '\"' || **data == '\'' 							//
+//			|| **data == '$' || **data == '\\')					//
+//	{
+//		if (special_symbol(&(*last_arg)->str, data,arg_size, &all->env))	// write function here 
+//			return (BAD_MALLOC);
+//		if (!**data)
+//			return (2);
+//	}
+//	else if (**data == '>' || **data == '<')
+//	{
+//		if (handle_arrows(data, last_arg) == 1)
+//			return (BAD_MALLOC);
+//		*arg_size = -1;
+//	}
+//	else if (**data == ' ')
+//	{
+//		if (handle_space(data, last_arg) == 1)					//and don't forget about this
+//			return (BAD_MALLOC);								// ERROR retrun (Malloc)
+//		*arg_size = -1;
+//	}
+//	return (ALL_OK);
+//}
 
-int	parser(char *data, t_lst **env)
+int	parser(char *data, t_all *all) //fix """   BIBA"
 {
 	t_lst	*args;
 	t_lst	*last_arg;
+	//int		status;
 	int		arg_size;												// length of current argument
 
-	if (!*data || !data)
+	if (!data || !*data)
 		return (0);
 	args = lstnew_char(NULL);
 	last_arg = args;
@@ -81,12 +108,19 @@ int	parser(char *data, t_lst **env)
 		data++;
 	while (*data)
 	{
+		//status = extended_symbols(all, &data, &arg_size, &last_arg);
+		//if (status)
+		//{
+		//	if (status == 2)
+		//		break ;
+		//	return (status);
+		//}
 		if (*data == '|' || *data == ';')
 			return (1);												//execve
 		if (*data == '\"' || *data == '\'' 							//
 				|| *data == '$' || *data == '\\')					//
 		{
-			if (special_symbol(&(last_arg->str), &data, &arg_size, env))	// write function here 
+			if (special_symbol(&(last_arg->str), &data, &arg_size, &all->env))	// write function here 
 				return (BAD_MALLOC);
 			if (!*data)
 				break ;
@@ -112,6 +146,7 @@ int	parser(char *data, t_lst **env)
 		data++;
 		arg_size++;
 	}
+	printf("\n------------\n");
 	test_parsed(args);
 	printf("------------\n");
 	lstclear_char(&args);

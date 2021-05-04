@@ -3,8 +3,6 @@
 
 # include <stdbool.h>
 
-# define ALL_OK 0
-# define BAD_MALLOC 1
 /*#define DOUBLE_QUOTES (1 << 0) // 1
 #define QOUTES (1 << 1) // 2
 #define PIPE (1 << 2) // 4
@@ -31,7 +29,6 @@ t_lst	*lstnew_char(char *content);
 void	lst_add_back(t_lst **lst, t_lst *new);
 void	lstclear_char(t_lst **lst);
 char	*char_join(char **arg, char symbol, int arg_size);
-int		parser(char *data, t_lst **env);
 int		special_symbol(char **arg, char **data, int *arg_size, t_lst **env);
 int		double_quotes(char **arg, char **data, int *arg_size, t_lst **env);
 int		dollar(char **arg, char **data, int *arg_size, t_lst **env);

@@ -1,15 +1,34 @@
 #include "./headers/overall.h"
 
+static void set_history(t_all *all)
+{
+	t_history	*tmp;
+
+	tmp = malloc(sizeof(t_history));
+	if (!tmp)
+		errors(all, BAD_MALLOC);
+	tmp->next = NULL;
+	tmp->cmd = NULL;
+	tmp->prev = NULL;
+	all->head_history = tmp;
+	all->current_cmd = tmp;
+}
+
 static void	set_all(t_all *all, char **envp)
 {
 	g_errno = 0;
+	all->head_history = NULL;
+	all->current_cmd = NULL;
+	all->stroller = NULL;
 	all->cursor_pos = 0;
 	all->writen_symblos = 0;
+	all->cmd_in_history = 0;
 	all->env = NULL;
+	set_history(all);
 	environment_to_struct(&(all->env), envp);
 	all->term_name = "xterm-256color";
 	if (tcgetattr(0, &(all->term)))
-		return ;																//error managment
+		errors(all, TERM_ERROR);																//error managment
 	tgetent(0, all->term_name);
 	all->cursor_pos = 0;
 }

@@ -9,7 +9,7 @@ char	*char_join(char **arg, char symbol, int arg_size)
 	tmp = *arg;
 	res = malloc(sizeof(char) * (arg_size + 2));
 	if (!res)
-		return (0);
+		return (NULL);
 	i = 0;
 	if (tmp)
 		while (i < arg_size)

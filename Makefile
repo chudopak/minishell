@@ -14,7 +14,9 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/parser.c \
 			parser/special_symbol.c
 
-SOURCES=	sources/handle_input.c
+SOURCES=	sources/handle_input.c \
+			sources/errors.c \
+			sources/history.c
 
 SRC=		$(PARSER) ${SOURCES} minishell.c
 
