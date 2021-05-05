@@ -56,7 +56,7 @@ void	get_history_comand(t_all *all, char *str)
 	if (!all->stroller)
 		all->stroller = all->current_cmd;
 	if (!ft_strcmp(str, "\e[A"))
-		history_prev(all);												//don't forget
+		history_prev(all);
 	else
-		history_next(all);												//don't forget
+		history_next(all);
 }

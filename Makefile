@@ -12,7 +12,9 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/lstclear_char.c \
 			parser/lstnew.c \
 			parser/parser.c \
-			parser/special_symbol.c
+			parser/special_symbol.c \
+			parser/back_slash.c \
+			parser/arrows_space.c
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \

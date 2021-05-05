@@ -1,35 +1,30 @@
-//MAKE MORE TESTS AND WRITE IT WITH NORM
 #include "../headers/overall.h"
 
-int	backslash_double_quotes(char **arg, char **data, int *arg_size)
+int	what_is_after_qoutes(char **data, int *arg_size, char **arg)
 {
-	if (*(*data + 1) == '$')
+	if (*(*data + 1) != ' ' && *(*data + 1) != '\0')
+		(*arg_size)--;
+	else if (!*arg_size && (*(*data + 1) == ' ' || *(*data + 1) == '\0'))
 	{
-		(*data)++;
-		*arg = char_join(arg, **data, *arg_size);
-		if (!*arg)
-			return (BAD_MALLOC);														//malloc problem
-	}
-	else
-	{
-		*arg = char_join(arg, **data, *arg_size);
+		*arg = char_join(arg, '\0', *arg_size);
 		if (!*arg)
 			return (BAD_MALLOC);
 	}
 	return (ALL_OK);
 }
 
-/*if it end with '\0' and didn't clode quotes it still return argument and work but it udefined behavior*/
+/*   if it end with '\0' and didn't clode quotes it still **
+**   return argument and work but it udefined behavior    */
 
 int	double_quotes(char **arg, char **data, int *arg_size, t_lst **env)
 {
 	(*data)++;
 	while (**data != '\"' && **data)
 	{
-		if (**data == '$')																// dollar_quotes
+		if (**data == '$')
 		{
 			if (dollar(arg, data, arg_size, env))
-				return (BAD_MALLOC);													//don't forget about this one
+				return (BAD_MALLOC);
 			continue ;
 		}
 		else if (**data == '\\')
@@ -41,11 +36,12 @@ int	double_quotes(char **arg, char **data, int *arg_size, t_lst **env)
 		{
 			*arg = char_join(arg, **data, *arg_size);
 			if (!*arg)
-				return (BAD_MALLOC);													//malloc problem
+				return (BAD_MALLOC);
 		}
 		(*data)++;
 		(*arg_size)++;
 	}
+	what_is_after_qoutes(data, arg_size, arg);
 	return (ALL_OK);
 }
 
@@ -60,6 +56,8 @@ int	single_quotes(char **arg, char **data, int *arg_size)
 		(*data)++;
 		(*arg_size)++;
 	}
+	if (what_is_after_qoutes(data, arg_size, arg))
+		return (BAD_MALLOC);
 	return (ALL_OK);
 }
 
@@ -82,5 +80,12 @@ int	special_symbol(char **arg, char **data, int *arg_size, t_lst **env)
 		(*data)--;
 		(*arg_size)--;
 	}
+	else if (**data == '\\')
+	{
+		if (back_slash(arg, data, arg_size))
+			return (BAD_MALLOC);
+	}
+	if (!**data)
+		(*data)--;
 	return (ALL_OK);
 }
