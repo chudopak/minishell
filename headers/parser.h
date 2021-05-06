@@ -42,6 +42,6 @@ int		single_quotes(char **arg, char **data, int *arg_size);
 int		handle_arrows(char **data, t_lst **last_arg);
 int		handle_space(char **data, t_lst **last_arg);
 int		put_endline(t_lst **last_arg);
-
+int		add_g_errno(char **arg, char **data, int *arg_size);
 
 #endif

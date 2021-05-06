@@ -10,7 +10,8 @@ static void test_parsed(t_lst *args)
 	printf("%s\n", args->str);
 }
 
-static void	handle_space_arrow(t_all *all, char **data, t_lst **last_arg, int *arg_size)
+static void	handle_space_arrow(t_all *all, char **data,
+							t_lst **last_arg, int *arg_size)
 {
 	if (**data == '>' || **data == '<')
 	{
@@ -26,20 +27,23 @@ static void	handle_space_arrow(t_all *all, char **data, t_lst **last_arg, int *a
 	}
 }
 
-static void	handle_special_symbol(t_all *all, char **arg, char **data, int *arg_size)
+static void	handle_special_symbol(t_all *all, char **arg,
+								char **data, int *arg_size)
 {
 	if (special_symbol(arg, data, arg_size, &all->env))
 		errors(all, BAD_MALLOC);
 }
 
-static void	add_usual_symbol(t_all *all, t_lst **last_arg, char **data, int *arg_size)
+static void	add_usual_symbol(t_all *all, t_lst **last_arg,
+							char **data, int *arg_size)
 {
 	(*last_arg)->str = char_join(&(*last_arg)->str, **data, *arg_size);
 	if (!(*last_arg)->str)
 		errors(all, BAD_MALLOC);
 }
 
-static void	set_for_parsing(t_lst **args, t_lst **last_arg, int *arg_size, char **data)
+static void	set_for_parsing(t_lst **args, t_lst **last_arg,
+							int *arg_size, char **data)
 {
 	*args = lstnew_char(NULL);
 	*last_arg = *args;

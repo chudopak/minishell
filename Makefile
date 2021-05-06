@@ -14,7 +14,8 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/parser.c \
 			parser/special_symbol.c \
 			parser/back_slash.c \
-			parser/arrows_space.c
+			parser/arrows_space.c \
+			parser/glue_env_to_arg.c
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \

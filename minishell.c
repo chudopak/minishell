@@ -27,6 +27,8 @@ static void	set_all(t_all *all, char **envp)
 	set_history(all);
 	environment_to_struct(&(all->env), envp);
 	all->term_name = "xterm-256color";
+	if (!all->env)
+		errors(all, ENV_ERROR);
 	if (tcgetattr(0, &(all->term)))
 		errors(all, TERM_ERROR);																//error managment
 	tgetent(0, all->term_name);

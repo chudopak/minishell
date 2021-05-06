@@ -12,12 +12,14 @@ char	*char_join(char **arg, char symbol, int arg_size)
 		return (NULL);
 	i = 0;
 	if (tmp)
+	{
 		while (i < arg_size)
 		{
 			res[i] = *tmp;
 			i++;
 			(tmp)++;
 		}
+	}
 	res[i] = symbol;
 	res[++i] = '\0';
 	free(*arg);

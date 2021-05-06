@@ -10,7 +10,7 @@ void	environment_to_struct(t_lst **env, char **envp)
 		if (!tmp)
 		{
 			lstclear_char(env);
-			return ;										//error managment
+			return ;
 		}
 		lst_add_back(env, tmp);
 		envp++;

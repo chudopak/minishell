@@ -14,9 +14,10 @@
 # define ALL_OK 0
 # define BAD_MALLOC 1
 # define TERM_ERROR 2
+# define ENV_ERROR 3
 
 /* History limit*/
-# define HISTORY_LIMIT 999
+# define HISTORY_LIMIT 10
 
 int				g_errno;
 
@@ -41,7 +42,7 @@ typedef struct	s_all
 	int				cmd_in_history;
 }				t_all;
 
-int		parser(char *data, /*t_lst **env*/t_all *all);
+int		parser(char *data, /*t_lst **env*/ t_all *all);
 int		ft_pwd(void);
 int		ft_echo(t_lst *list);
 void	handle_input(t_all *all);

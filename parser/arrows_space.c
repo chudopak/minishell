@@ -32,19 +32,10 @@ int	handle_space(char **data, t_lst **last_arg)
 	return (ALL_OK);
 }
 
-int	handle_arrows(char **data, t_lst **last_arg)
+static int	create_redirect_arg(char **data, t_lst **last_arg)
 {
-	t_lst	*tmp;
 	int		arg_size;
 
-	if ((*last_arg)->str)
-	{
-		tmp = lstnew_char(NULL);
-		if (!tmp)
-			return (BAD_MALLOC);
-		lst_add_back(last_arg, tmp);
-		*last_arg = (*last_arg)->next;
-	}
 	arg_size = 0;
 	while (**data == '<' || **data == '>')
 	{
@@ -54,6 +45,23 @@ int	handle_arrows(char **data, t_lst **last_arg)
 		++*data;
 		arg_size++;
 	}
+	return (ALL_OK);
+}
+
+int	handle_arrows(char **data, t_lst **last_arg)
+{
+	t_lst	*tmp;
+
+	if ((*last_arg)->str)
+	{
+		tmp = lstnew_char(NULL);
+		if (!tmp)
+			return (BAD_MALLOC);
+		lst_add_back(last_arg, tmp);
+		*last_arg = (*last_arg)->next;
+	}
+	if (create_redirect_arg(data, last_arg))
+		return (BAD_MALLOC);
 	if (**data != ' ' && **data)
 	{
 		tmp = lstnew_char(NULL);
