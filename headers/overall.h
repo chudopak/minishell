@@ -17,7 +17,7 @@
 # define ENV_ERROR 3
 
 /* History limit*/
-# define HISTORY_LIMIT 10
+# define HISTORY_LIMIT 50
 
 int				g_errno;
 
@@ -51,6 +51,9 @@ void	get_history_comand(t_all *all, char *str);
 void	add_symbol(t_all *all, char *str, int ret, char *cmd);
 void	errors(t_all *all, int	error_code);
 void	rm_node(t_all *all);
-
+void	remove_elem_history(t_all *all);
+void	handle_ctrl_c(t_all *all);
+void	manage_backspace(t_all *all);
+char	*delete_symbol(t_all *all);
 
 #endif

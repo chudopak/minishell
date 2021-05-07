@@ -19,7 +19,9 @@ PARSER=		parser/auxiliary_parser.c \
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \
-			sources/history.c
+			sources/history.c \
+			sources/utils1.c \
+			sources/handle_ctrl_c.c
 
 SRC=		$(PARSER) ${SOURCES} minishell.c
 

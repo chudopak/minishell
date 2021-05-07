@@ -1,24 +1,34 @@
 #include "../headers/overall.h"
 
-int	unprint_symbols(char *str)
+char	*delete_symbol(t_all *all)
 {
-	if (*str < 32 && (*str != '\n' && *str != 3 && *str != 4))
-		return (1);
-	return (0);
+	char	*res;
+	int		i;
+
+	res = malloc(sizeof(char) * (all->writen_symblos - 1));
+	if (!res)
+		return (NULL);
+	i = -1;
+	while (++i < all->writen_symblos - 1)
+		res[i] = all->stroller->cmd[i];
+	res[i] = '\0';
+	free(all->stroller->cmd);
+	all->writen_symblos -= 1;
+	return (res);
 }
 
-void	rm_node(t_all *all)
+void	manage_backspace(t_all *all)
 {
-	t_history	*tmp;
-
-	tmp = all->head_history->next;
-	tmp->prev = NULL;
-	free(all->head_history);
-	all->head_history = tmp;
-	all->cmd_in_history--;
+	if (!all->stroller->cmd || !*(all->stroller->cmd))
+		return ;
+	tputs(cursor_left, 1, ft_putint);
+	tputs(tigetstr("ed"), 1, ft_putint);
+	all->stroller->cmd = delete_symbol(all);
+	if (!all->stroller->cmd)
+		errors(all, BAD_MALLOC);
 }
 
-void	new_history_elem(t_all *all)
+static void	new_history_elem(t_all *all)
 {
 	t_history	*new_node;
 
@@ -36,23 +46,6 @@ void	new_history_elem(t_all *all)
 	all->stroller = all->current_cmd;
 }
 
-void	handle_ctrl_c(t_all *all)
-{
-	if (all->stroller->cmd)
-	{
-		tputs(tigetstr("ed"), 1, ft_putint);
-		tputs(restore_cursor, 1, ft_putint);
-		ft_putstr_fd(all->stroller->cmd, 1);
-		ft_putchar_fd('\n', 1);
-		free(all->stroller->cmd);
-		all->stroller->cmd = NULL;
-		all->current_cmd = 0;
-		all->writen_symblos = 0;
-	}
-	else
-		ft_putchar_fd('\n', 1);
-}
-
 void	handle_input(t_all *all)
 {
 	char	str[50];
@@ -67,11 +60,10 @@ void	handle_input(t_all *all)
 			get_history_comand(all, str);
 		else if (!ft_strcmp(str, "\3"))
 			handle_ctrl_c(all);												//fix segfolt
-			//write(1, "ctrl_c", ft_strlen("ctrl_c"));						//don't forget
 		else if (!ft_strcmp(str, "\4"))
 			exit(g_errno);													//don't forget ctrl d
-		//else if (!ft_strcmp(str, "\177") || *str == '\b')
-		//	backspase();
+		else if (!ft_strcmp(str, "\177") || *str == '\b')
+			manage_backspace(all);
 		else if (unprint_symbols(str))
 			continue ;
 		else if (ft_strcmp(str, "\n"))
@@ -86,6 +78,7 @@ void	handle_input(t_all *all)
 			break ;
 	}
 	all->writen_symblos = 0;
+	all->cursor_pos = 0;
 	if (all->stroller != all->current_cmd)
 	{
 		free(all->current_cmd->cmd);
