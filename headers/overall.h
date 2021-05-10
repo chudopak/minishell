@@ -7,6 +7,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <term.h>
+# include <sys/ioctl.h>
 # include "parser.h"
 # include "../libft/libft.h"
 
@@ -36,6 +37,7 @@ typedef struct	s_all
 	t_history		*stroller;
 	struct termios	term;
 	struct termios	term_default_set;
+	struct winsize 	win;
 	char			*term_name;
 	int				cursor_pos;
 	int				writen_symblos;

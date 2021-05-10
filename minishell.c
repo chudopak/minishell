@@ -24,6 +24,7 @@ static void	set_all(t_all *all, char **envp)
 	all->writen_symblos = 0;
 	all->cmd_in_history = 0;
 	all->env = NULL;
+	ioctl(1, TIOCGWINSZ, &all->win);
 	set_history(all);
 	environment_to_struct(&(all->env), envp);
 	all->term_name = "xterm-256color";

@@ -17,13 +17,19 @@ char	*delete_symbol(t_all *all)
 	return (res);
 }
 
+/*
+** don't forget win size changing
+*/
+
 void	manage_backspace(t_all *all)
 {
+	//TIOCGWINSZ ioctl struct winsize win
 	if (!all->stroller->cmd || !*(all->stroller->cmd))
 		return ;
-	tputs(cursor_left, 1, ft_putint);
-	tputs(tigetstr("ed"), 1, ft_putint);
 	all->stroller->cmd = delete_symbol(all);
+	tputs(restore_cursor, 1, ft_putint);
+	tputs(tigetstr("ed"), 1, ft_putint);
+	ft_putstr_fd(all->stroller->cmd, 1);
 	if (!all->stroller->cmd)
 		errors(all, BAD_MALLOC);
 }
@@ -55,6 +61,7 @@ void	handle_input(t_all *all)
 	while (1)
 	{
 		readed = read(0, str, 100);
+		ioctl(1, TIOCGWINSZ, &all->win);
 		str[readed] = '\0';
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			get_history_comand(all, str);
