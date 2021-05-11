@@ -17,6 +17,11 @@ typedef struct s_lst{
 	struct s_lst	*next;
 }					t_lst;
 
+typedef struct s_redirect {
+	int				right;
+	int				left;
+}					t_redirect;
+
 /*typedef struct s_status {
 	bool		double_quotes;
 	bool		quotes;
@@ -28,6 +33,9 @@ void	environment_to_struct(t_lst **env, char **envp);
 t_lst	*lstnew_char(char *content);
 void	lst_add_back(t_lst **lst, t_lst *new);
 void	lstclear_char(t_lst **lst);
+int		lst_size(t_lst *lst);
+void	lst_clear(t_lst *lst);
+void	lst_delone(t_lst *lst);
 char	*char_join(char **arg, char symbol, int arg_size);
 int		special_symbol(char **arg, char **data, int *arg_size, t_lst **env);
 int		double_quotes(char **arg, char **data, int *arg_size, t_lst **env);
@@ -43,5 +51,6 @@ int		handle_arrows(char **data, t_lst **last_arg);
 int		handle_space(char **data, t_lst **last_arg);
 int		put_endline(t_lst **last_arg);
 int		add_g_errno(char **arg, char **data, int *arg_size);
+void	free_cmd(char **cmd);
 
 #endif

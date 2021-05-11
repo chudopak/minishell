@@ -34,7 +34,7 @@ int	handle_space(char **data, t_lst **last_arg)
 
 static int	create_redirect_arg(char **data, t_lst **last_arg)
 {
-	int		arg_size;
+	int			arg_size;
 
 	arg_size = 0;
 	while (**data == '<' || **data == '>')
@@ -51,6 +51,7 @@ static int	create_redirect_arg(char **data, t_lst **last_arg)
 int	handle_arrows(char **data, t_lst **last_arg)
 {
 	t_lst	*tmp;
+	int		status;
 
 	if ((*last_arg)->str)
 	{
@@ -60,8 +61,9 @@ int	handle_arrows(char **data, t_lst **last_arg)
 		lst_add_back(last_arg, tmp);
 		*last_arg = (*last_arg)->next;
 	}
-	if (create_redirect_arg(data, last_arg))
-		return (BAD_MALLOC);
+	status = create_redirect_arg(data, last_arg);
+	if (status)
+		return (status);
 	if (**data != ' ' && **data)
 	{
 		tmp = lstnew_char(NULL);

@@ -25,3 +25,12 @@ char	*char_join(char **arg, char symbol, int arg_size)
 	free(*arg);
 	return (res);
 }
+
+void	free_cmd(char **cmd)
+{
+	while (*cmd)
+	{
+		free(*cmd);
+		(*cmd)++;
+	}
+}

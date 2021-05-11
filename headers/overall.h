@@ -29,6 +29,14 @@ typedef struct s_history
 	struct s_history	*prev;
 }						t_history;
 
+typedef struct	s_command {
+	char		**cmd;
+	int			pipein;
+	int			pipeout;
+	int			redirectin;
+	int			redirectout;
+}				t_command;
+
 typedef struct	s_all
 {
 	t_lst			*env;
@@ -42,6 +50,9 @@ typedef struct	s_all
 	int				cursor_pos;
 	int				writen_symblos;
 	int				cmd_in_history;
+	int				pipein;
+	int				redirectin;
+	int				redirectout;
 }				t_all;
 
 int		parser(char *data, /*t_lst **env*/ t_all *all);

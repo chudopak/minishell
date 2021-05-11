@@ -11,6 +11,7 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/lst_add_back.c \
 			parser/lstclear_char.c \
 			parser/lstnew.c \
+			parser/lst_size.c \
 			parser/parser.c \
 			parser/special_symbol.c \
 			parser/arrows_space.c \

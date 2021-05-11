@@ -13,10 +13,13 @@ static void test_parsed(t_lst *args)
 static void	handle_space_arrow(t_all *all, char **data,
 							t_lst **last_arg, int *arg_size)
 {
+	int		status;
+
 	if (**data == '>' || **data == '<')
 	{
-		if (handle_arrows(data, last_arg) == 1)
-			errors(all, BAD_MALLOC);
+		status = handle_arrows(data, last_arg);
+		if (status)
+			errors(all, status);
 		*arg_size = -1;
 	}
 	else if (**data == ' ')
@@ -52,7 +55,7 @@ static void	set_for_parsing(t_lst **args, t_lst **last_arg,
 		(*data)++;
 }
 
-int	parser(char *data, t_all *all) //fix """   BIBA"
+int	parser(char *data, t_all *all)
 {
 	t_lst	*args;
 	t_lst	*last_arg;
@@ -64,6 +67,10 @@ int	parser(char *data, t_all *all) //fix """   BIBA"
 	while (*data)
 	{
 		if (*data == '|' || *data == ';')
+		//{
+		//	set_to_exec(all, args, last_arg, data);
+		//	arg_size = -1;
+		//}
 			return (1);												//execve & don't forgget to put '\0' in NULL str
 		if (*data == '\"' || *data == '\'' || *data == '$' || *data == '\\')
 			handle_special_symbol(all, &(last_arg->str), &data, &arg_size);

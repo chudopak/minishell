@@ -92,5 +92,6 @@ void	handle_input(t_all *all)
 		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
 	}
 	all->stroller = NULL;
+	//syntax_error_checker(all->current_cmd->cmd);
 	parser(all->current_cmd->cmd, all);
 }
