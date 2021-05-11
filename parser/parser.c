@@ -17,7 +17,7 @@ static void	handle_space_arrow(t_all *all, char **data,
 
 	if (**data == '>' || **data == '<')
 	{
-		status = handle_arrows(data, last_arg);
+		status = handle_arrows(all, data, last_arg);
 		if (status)
 			errors(all, status);
 		*arg_size = -1;

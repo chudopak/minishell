@@ -18,6 +18,10 @@ static void	set_all(t_all *all, char **envp)
 {
 	g_errno = 0;
 	all->head_history = NULL;
+	all->pipein = 0;
+	all->redirectout = 0;
+	all->redirectin = 0;
+	all->redirect = 0;
 	all->current_cmd = NULL;
 	all->stroller = NULL;
 	all->cursor_pos = 0;

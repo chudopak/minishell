@@ -35,6 +35,7 @@ typedef struct	s_command {
 	int			pipeout;
 	int			redirectin;
 	int			redirectout;
+	int			redirect;
 }				t_command;
 
 typedef struct	s_all
@@ -53,6 +54,7 @@ typedef struct	s_all
 	int				pipein;
 	int				redirectin;
 	int				redirectout;
+	int				redirect;
 }				t_all;
 
 int		parser(char *data, /*t_lst **env*/ t_all *all);
