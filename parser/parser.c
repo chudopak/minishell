@@ -64,14 +64,10 @@ int	parser(char *data, t_all *all)
 	if (!data || !*data)
 		return (ALL_OK);
 	set_for_parsing(&args, &last_arg, &arg_size, &data);
-	while (*data)
+	while (!ft_strchr("\n\0#", *data))
 	{
 		if (*data == '|' || *data == ';')
-		//{
-		//	set_to_exec(all, args, last_arg, data);
-		//	arg_size = -1;
-		//}
-			return (1);												//execve & don't forgget to put '\0' in NULL str
+			set_to_exec(all, &args, &last_arg, &data);
 		if (*data == '\"' || *data == '\'' || *data == '$' || *data == '\\')
 			handle_special_symbol(all, &(last_arg->str), &data, &arg_size);
 		else if (*data == '>' || *data == '<' || *data == ' ')
@@ -83,7 +79,7 @@ int	parser(char *data, t_all *all)
 	}
 	if (last_arg->str == NULL)
 		put_endline(&last_arg);
-	printf("\n------------\n");
+	printf("------------\n");
 	test_parsed(args);
 	printf("------------\n");
 	lstclear_char(&args);

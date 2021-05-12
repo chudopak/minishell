@@ -52,6 +52,31 @@ static void	new_history_elem(t_all *all)
 	all->stroller = all->current_cmd;
 }
 
+static void	prepare_parsing(t_all *all)
+{
+	all->writen_symblos = 0;
+	all->cursor_pos = 0;
+	if (all->stroller != all->current_cmd)
+	{
+		free(all->current_cmd->cmd);
+		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
+	}
+	all->stroller = NULL;
+	write(1, "\n", 1);
+	
+	if (all->current_cmd->cmd && !syntax_error_checker(all->current_cmd->cmd))
+		parser(all->current_cmd->cmd, all);
+}
+
+
+static void	set_char(t_all *all, char *str)
+{
+	all->stroller->cmd = char_join(&all->stroller->cmd,
+			*str, all->writen_symblos);
+	all->writen_symblos++;
+	write(1, str, 1);
+	all->cursor_pos++;
+}
 void	handle_input(t_all *all)
 {
 	char	str[50];
@@ -61,7 +86,7 @@ void	handle_input(t_all *all)
 	while (1)
 	{
 		readed = read(0, str, 100);
-		ioctl(1, TIOCGWINSZ, &all->win);
+		//ioctl(1, TIOCGWINSZ, &all->win);
 		str[readed] = '\0';
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			get_history_comand(all, str);
@@ -74,24 +99,9 @@ void	handle_input(t_all *all)
 		else if (unprint_symbols(str))
 			continue ;
 		else if (ft_strcmp(str, "\n"))
-		{
-			all->stroller->cmd = char_join(&all->stroller->cmd,
-					*str, all->writen_symblos);
-			all->writen_symblos++;
-			write(1, str, 1);
-			all->cursor_pos++;
-		}
+			set_char(all, str);
 		else
 			break ;
 	}
-	all->writen_symblos = 0;
-	all->cursor_pos = 0;
-	if (all->stroller != all->current_cmd)
-	{
-		free(all->current_cmd->cmd);
-		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
-	}
-	all->stroller = NULL;
-	//syntax_error_checker(all->current_cmd->cmd);
-	parser(all->current_cmd->cmd, all);
+	prepare_parsing(all);
 }

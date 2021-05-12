@@ -16,13 +16,16 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/special_symbol.c \
 			parser/arrows_space.c \
 			parser/glue_env_to_arg.c \
-			parser/back_slash.c
+			parser/back_slash.c \
+			parser/set_to_exec.c
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \
 			sources/history.c \
 			sources/utils1.c \
-			sources/handle_ctrl_c.c
+			sources/handle_ctrl_c.c \
+			sources/puterror.c \
+			sources/syntax_error_checker.c
 
 SRC=		$(PARSER) ${SOURCES} minishell.c
 

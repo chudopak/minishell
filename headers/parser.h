@@ -47,7 +47,6 @@ int		backslash_double_quotes(char **arg, char **data, int *arg_size);
 int		cmp_data_to_env(char *s1, char *s2);
 int		back_slash(char **arg, char **data, int *arg_size);
 int		single_quotes(char **arg, char **data, int *arg_size);
-int		handle_arrows(t_all *all, char **data, t_lst **last_arg);
 int		handle_space(char **data, t_lst **last_arg);
 int		put_endline(t_lst **last_arg);
 int		add_g_errno(char **arg, char **data, int *arg_size);

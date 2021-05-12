@@ -28,9 +28,13 @@ char	*char_join(char **arg, char symbol, int arg_size)
 
 void	free_cmd(char **cmd)
 {
+	char **tmp;
+
+	tmp = cmd;
 	while (*cmd)
 	{
 		free(*cmd);
-		(*cmd)++;
+		cmd++;
 	}
+	free(tmp);
 }

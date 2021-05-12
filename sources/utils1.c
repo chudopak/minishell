@@ -23,3 +23,10 @@ void	remove_elem_history(t_all *all)
 	free(all->stroller->cmd);
 	all->stroller->cmd = NULL;
 }
+
+int		is_separator(char c)
+{
+	if (ft_strchr(" \t\r", c))
+		return (1);
+	return (0);
+}
