@@ -1,14 +1,14 @@
 #include "../headers/overall.h"
 
-static void test_parsed(t_lst *args)
-{
-	while (args->next)
-	{
-		printf("%s\n", args->str);
-		args = args->next;
-	}
-	printf("%s\n", args->str);
-}
+//static void test_parsed(t_lst *args)
+//{
+//	while (args->next)
+//	{
+//		printf("%s\n", args->str);
+//		args = args->next;
+//	}
+//	printf("%s\n", args->str);
+//}
 
 static void	handle_space_arrow(t_all *all, char **data,
 							t_lst **last_arg, int *arg_size)
@@ -55,6 +55,13 @@ static void	set_for_parsing(t_lst **args, t_lst **last_arg,
 		(*data)++;
 }
 
+static void	prepare_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
+{
+	if ((*last_arg)->str == NULL)
+		put_endline(last_arg);
+	set_to_exec(all, args, last_arg, data);
+}
+
 int	parser(char *data, t_all *all)
 {
 	t_lst	*args;
@@ -77,11 +84,9 @@ int	parser(char *data, t_all *all)
 		data++;
 		arg_size++;
 	}
-	if (last_arg->str == NULL)
-		put_endline(&last_arg);
-	printf("------------\n");
-	test_parsed(args);
-	printf("------------\n");
-	lstclear_char(&args);
+	prepare_to_exec(all, &args, &last_arg, &data);
+	//printf("------------\n");
+	//test_parsed(args);
+	//printf("------------\n");
 	return (ALL_OK);
 }

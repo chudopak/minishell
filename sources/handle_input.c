@@ -77,6 +77,7 @@ static void	set_char(t_all *all, char *str)
 	write(1, str, 1);
 	all->cursor_pos++;
 }
+
 void	handle_input(t_all *all)
 {
 	char	str[50];
@@ -86,7 +87,6 @@ void	handle_input(t_all *all)
 	while (1)
 	{
 		readed = read(0, str, 100);
-		//ioctl(1, TIOCGWINSZ, &all->win);
 		str[readed] = '\0';
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			get_history_comand(all, str);

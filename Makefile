@@ -17,7 +17,9 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/arrows_space.c \
 			parser/glue_env_to_arg.c \
 			parser/back_slash.c \
-			parser/set_to_exec.c
+			parser/set_to_exec.c \
+			parser/set_to_exec1.c \
+			parser/set_fd_for_redirect.c
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \

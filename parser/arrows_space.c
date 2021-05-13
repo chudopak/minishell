@@ -37,12 +37,7 @@ static int	create_redirect_arg(t_all *all, char **data, t_lst **last_arg)
 	int			arg_size;
 
 	arg_size = 0;
-	if (**data == '<')
-		all->redirectout++;
-	else if (**data == '>' && *(*data + 1) == '>')
-		all->redirect++;
-	else if (**data == '>')
-		all->redirectin++;
+	all->redirect = 1;
 	while (**data == '<' || **data == '>')
 	{
 		(*last_arg)->str = char_join(&((*last_arg)->str), **data, arg_size);
