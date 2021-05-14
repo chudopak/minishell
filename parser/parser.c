@@ -1,15 +1,5 @@
 #include "../headers/overall.h"
 
-//static void test_parsed(t_lst *args)
-//{
-//	while (args->next)
-//	{
-//		printf("%s\n", args->str);
-//		args = args->next;
-//	}
-//	printf("%s\n", args->str);
-//}
-
 static void	handle_space_arrow(t_all *all, char **data,
 							t_lst **last_arg, int *arg_size)
 {
