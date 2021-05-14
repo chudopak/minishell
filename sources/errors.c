@@ -1,7 +1,7 @@
 #include "../headers/overall.h"
 
-void	errors(t_all *all, int	error_code)
+void	errors(char *exit_massage, int	error_code)
 {
-	all->writen_symblos = 0;
+	ft_putstr_fd(exit_massage, 1);
 	exit(error_code);
 }

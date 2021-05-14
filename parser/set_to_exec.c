@@ -45,7 +45,7 @@ void	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 
 	command = set_token(all, **data);
 	if (check_last_arg_for_null(*last_arg))
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"set_to_exec\".\n", BAD_MALLOC);
 	command.cmd = convert_to_array(*args);
 	print_command(command.cmd);
 	if (all->redirect)
@@ -62,5 +62,5 @@ void	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 	*/
 	clear_leftover(&command, args);
 	if (set_new_lst(all, args, last_arg, data))
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"set_to_exec\".\n", BAD_MALLOC);
 }

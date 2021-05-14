@@ -31,7 +31,7 @@ void	manage_backspace(t_all *all)
 	tputs(tigetstr("ed"), 1, ft_putint);
 	ft_putstr_fd(all->stroller->cmd, 1);
 	if (!all->stroller->cmd)
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"manage_backspace\".\n", BAD_MALLOC);
 }
 
 static void	new_history_elem(t_all *all)
@@ -42,7 +42,7 @@ static void	new_history_elem(t_all *all)
 		rm_node(all);
 	new_node = malloc(sizeof(t_history));
 	if (!new_node)
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"new_history_elem\".\n", BAD_MALLOC);
 	new_node->prev = all->current_cmd;
 	new_node->cmd = NULL;
 	new_node->next = NULL;
@@ -54,6 +54,9 @@ static void	new_history_elem(t_all *all)
 
 static void	prepare_parsing(t_all *all)
 {
+	all->term.c_lflag |= ECHO;
+	all->term.c_lflag |= ICANON;
+	all->term.c_lflag |= ISIG;
 	all->writen_symblos = 0;
 	all->cursor_pos = 0;
 	if (all->stroller != all->current_cmd)
@@ -63,7 +66,6 @@ static void	prepare_parsing(t_all *all)
 	}
 	all->stroller = NULL;
 	write(1, "\n", 1);
-	
 	if (all->current_cmd->cmd && !syntax_error_checker(all->current_cmd->cmd))
 		parser(all->current_cmd->cmd, all);
 }
@@ -87,9 +89,6 @@ void	handle_input(t_all *all)
 	while (1)
 	{
 		readed = read(0, str, 100);
-		//ioctl(1, TIOCGWINSZ, &all->win);
-
-
 		str[readed] = '\0';
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			get_history_comand(all, str);

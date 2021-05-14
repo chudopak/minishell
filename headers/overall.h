@@ -80,7 +80,7 @@ int			is_separator(char c);
 */
 int			puterror(char *msg, int error_code);
 int			puterror1(char *base_msg, char *token, char *s, int error_code);
-void		errors(t_all *all, int	error_code);
+void		errors(char *error_msg, int error_code);
 int			invalid_pipe_semicolom_token(char *data);
 int			syntax_error_checker(char *data);
 

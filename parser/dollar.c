@@ -12,7 +12,7 @@ int	add_g_errno(char **arg, char **data, int *arg_size)
 	i = -1;
 	while (gerrno[++i])
 	{
-		*arg = char_join(arg, *gerrno, *arg_size);
+		*arg = char_join(arg, *(gerrno + i), *arg_size);
 		if (!*arg)
 			return (BAD_MALLOC);
 		(*arg_size)++;

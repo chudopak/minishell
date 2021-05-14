@@ -6,7 +6,7 @@ static void set_history(t_all *all)
 
 	tmp = malloc(sizeof(t_history));
 	if (!tmp)
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"set hisoty\".\n", BAD_MALLOC);
 	tmp->next = NULL;
 	tmp->cmd = NULL;
 	tmp->prev = NULL;
@@ -31,9 +31,9 @@ static void	set_all(t_all *all, char **envp)
 	environment_to_struct(&(all->env), envp);
 	all->term_name = "xterm-256color";
 	if (!all->env)
-		errors(all, ENV_ERROR);
+		errors("Error: can't load evironment.\n", ENV_ERROR);
 	if (tcgetattr(0, &(all->term)))
-		errors(all, TERM_ERROR);																//error managment
+		errors("Error: can't get terminal attrebuts.\n", TERM_ERROR);																//error managment
 	tgetent(0, all->term_name);
 	all->cursor_pos = 0;
 }

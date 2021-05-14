@@ -9,13 +9,13 @@ static void	handle_space_arrow(t_all *all, char **data,
 	{
 		status = handle_arrows(all, data, last_arg);
 		if (status)
-			errors(all, status);
+			errors("Error: malloc error in \"handle_arrows\".\n", BAD_MALLOC);
 		*arg_size = -1;
 	}
 	else if (**data == ' ')
 	{
 		if (handle_space(data, last_arg) == 1)
-			errors(all, BAD_MALLOC);
+			errors("Error: malloc error in \"handle_space\".\n", BAD_MALLOC);
 		*arg_size = -1;
 	}
 }
@@ -24,15 +24,15 @@ static void	handle_special_symbol(t_all *all, char **arg,
 								char **data, int *arg_size)
 {
 	if (special_symbol(arg, data, arg_size, &all->env))
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"special_symbol\".\n", BAD_MALLOC);
 }
 
-static void	add_usual_symbol(t_all *all, t_lst **last_arg,
+static void	add_usual_symbol(t_lst **last_arg,
 							char **data, int *arg_size)
 {
 	(*last_arg)->str = char_join(&(*last_arg)->str, **data, *arg_size);
 	if (!(*last_arg)->str)
-		errors(all, BAD_MALLOC);
+		errors("Error: malloc error in \"add_usual_symbol\".\n", BAD_MALLOC);
 }
 
 static void	set_for_parsing(t_lst **args, t_lst **last_arg,
@@ -56,7 +56,7 @@ int	parser(char *data, t_all *all)
 {
 	t_lst	*args;
 	t_lst	*last_arg;
-	int		arg_size;												// length of current argument
+	int		arg_size;
 
 	if (!data || !*data)
 		return (ALL_OK);
@@ -70,13 +70,10 @@ int	parser(char *data, t_all *all)
 		else if (*data == '>' || *data == '<' || *data == ' ')
 			handle_space_arrow(all, &data, &last_arg, &arg_size);
 		else
-			add_usual_symbol(all, &last_arg, &data, &arg_size);
+			add_usual_symbol(&last_arg, &data, &arg_size);
 		data++;
 		arg_size++;
 	}
 	prepare_to_exec(all, &args, &last_arg, &data);
-	//printf("------------\n");
-	//test_parsed(args);
-	//printf("------------\n");
 	return (ALL_OK);
 }
