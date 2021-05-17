@@ -12,6 +12,7 @@
 # include <fcntl.h>
 # include "parser.h"
 # include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
 
 /* ERROR code*/
 # define ALL_OK 0
@@ -20,7 +21,7 @@
 # define ENV_ERROR 3
 
 /* History limit*/
-# define HISTORY_LIMIT 50
+# define HISTORY_LIMIT 10
 
 int				g_errno;
 
@@ -67,6 +68,14 @@ void		manage_backspace(t_all *all);
 char		*delete_symbol(t_all *all);
 int			handle_arrows(t_all *all, char **data, t_lst **last_arg);
 void		set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data);
+/*
+** history
+*/
+void		new_history_elem(t_all *all);
+void		set_history(t_all *all);
+void		push_writen_in_history(t_all *all);
+void		set_head_of_history(t_all *all);
+
 /*
 ** Utils1
 */

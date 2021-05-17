@@ -1,23 +1,8 @@
 #include "./headers/overall.h"
 
-static void set_history(t_all *all)
-{
-	t_history	*tmp;
-
-	tmp = malloc(sizeof(t_history));
-	if (!tmp)
-		errors("Error: malloc error in \"set hisoty\".\n", BAD_MALLOC);
-	tmp->next = NULL;
-	tmp->cmd = NULL;
-	tmp->prev = NULL;
-	all->head_history = tmp;
-	all->current_cmd = tmp;
-}
-
 static void	set_all(t_all *all, char **envp)
 {
 	g_errno = 0;
-	all->head_history = NULL;
 	all->pipein = 0;
 	all->redirect = 0;
 	all->current_cmd = NULL;
@@ -26,6 +11,8 @@ static void	set_all(t_all *all, char **envp)
 	all->writen_symblos = 0;
 	all->cmd_in_history = 0;
 	all->env = NULL;
+	//signal(SIGINT, handle_signals);
+	//signal(SIGQUIT, handle_signals);
 	ioctl(1, TIOCGWINSZ, &all->win);
 	set_history(all);
 	environment_to_struct(&(all->env), envp);

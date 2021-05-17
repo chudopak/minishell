@@ -27,11 +27,15 @@ SOURCES=	sources/handle_input.c \
 			sources/utils1.c \
 			sources/handle_ctrl_c.c \
 			sources/puterror.c \
-			sources/syntax_error_checker.c
+			sources/syntax_error_checker.c \
+			sources/set_history.c
 
-SRC=		$(PARSER) ${SOURCES} minishell.c
+GNL=		gnl/get_next_line.c \
+			gnl/get_next_line_utils.c
 
-OBJ			= $(PARSER:.c=.o) $(SOURCES:.c=.o) minishell.o
+SRC=		$(PARSER) ${SOURCES} ${GNL} minishell.c
+
+OBJ			= $(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) minishell.o
 
 %.o: %.c 
 	gcc $(FLAGS) $< -c -o $(<:.c=.o)

@@ -34,24 +34,6 @@ void	manage_backspace(t_all *all)
 		errors("Error: malloc error in \"manage_backspace\".\n", BAD_MALLOC);
 }
 
-static void	new_history_elem(t_all *all)
-{
-	t_history	*new_node;
-
-	if (all->cmd_in_history > HISTORY_LIMIT)
-		rm_node(all);
-	new_node = malloc(sizeof(t_history));
-	if (!new_node)
-		errors("Error: malloc error in \"new_history_elem\".\n", BAD_MALLOC);
-	new_node->prev = all->current_cmd;
-	new_node->cmd = NULL;
-	new_node->next = NULL;
-	all->current_cmd->next = new_node;
-	all->current_cmd = new_node;
-	all->cmd_in_history++;
-	all->stroller = all->current_cmd;
-}
-
 static void	prepare_parsing(t_all *all)
 {
 	all->term.c_lflag |= ECHO;
@@ -65,11 +47,12 @@ static void	prepare_parsing(t_all *all)
 		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
 	}
 	all->stroller = NULL;
+	if (all->current_cmd->cmd && *all->current_cmd->cmd)
+		push_writen_in_history(all);
 	write(1, "\n", 1);
 	if (all->current_cmd->cmd && !syntax_error_checker(all->current_cmd->cmd))
 		parser(all->current_cmd->cmd, all);
 }
-
 
 static void	set_char(t_all *all, char *str)
 {
@@ -93,7 +76,7 @@ void	handle_input(t_all *all)
 		if (!ft_strcmp(str, "\e[A") || !ft_strcmp(str, "\e[B"))
 			get_history_comand(all, str);
 		else if (!ft_strcmp(str, "\3"))
-			handle_ctrl_c(all);												//fix segfolt
+			handle_ctrl_c(all);
 		else if (!ft_strcmp(str, "\4"))
 			exit(g_errno);													//don't forget ctrl d
 		else if (!ft_strcmp(str, "\177") || *str == '\b')

@@ -1,6 +1,6 @@
 #include "../headers/overall.h"
 
-int		puterror(char *msg, int error_code)
+int	puterror(char *msg, int error_code)
 {
 	if (!msg)
 		msg = strerror(error_code);

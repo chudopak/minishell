@@ -46,10 +46,12 @@ static int	check_redirect_token(char **data)
 	else if (ft_strchr(";|&><", **data))
 	{
 		if (**data == '>' && *(*data + 1) == '>')
-			return (puterror1("syntax error near unexpected token `", ">>", "'", 258));
+			return (puterror1("syntax error near unexpected token `",
+					">>", "'", 258));
 		token[0] = **data;
 		token[1] = '\0';
-		return (puterror1("syntax error near unexpected token `", token, "'", 258));
+		return (puterror1("syntax error near unexpected token `",
+				token, "'", 258));
 	}
 	return (0);
 }
