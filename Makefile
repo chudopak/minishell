@@ -8,10 +8,6 @@ HEADERS=	headers/overall.h \
 PARSER=		parser/auxiliary_parser.c \
 			parser/dollar.c \
 			parser/environment_to_struct.c \
-			parser/lst_add_back.c \
-			parser/lstclear_char.c \
-			parser/lstnew.c \
-			parser/lst_size.c \
 			parser/parser.c \
 			parser/special_symbol.c \
 			parser/arrows_space.c \
@@ -19,7 +15,8 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/back_slash.c \
 			parser/set_to_exec.c \
 			parser/set_to_exec1.c \
-			parser/set_fd_for_redirect.c
+			parser/set_fd_for_redirect.c \
+			parser/parser2.c
 
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \
@@ -28,7 +25,8 @@ SOURCES=	sources/handle_input.c \
 			sources/handle_ctrl_c.c \
 			sources/puterror.c \
 			sources/syntax_error_checker.c \
-			sources/set_history.c
+			sources/set_history.c \
+			sources/lst_interact_functions.c
 
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c

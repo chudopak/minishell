@@ -67,7 +67,7 @@ void		handle_ctrl_c(t_all *all);
 void		manage_backspace(t_all *all);
 char		*delete_symbol(t_all *all);
 int			handle_arrows(t_all *all, char **data, t_lst **last_arg);
-void		set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data);
+int			set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data);
 /*
 ** history
 */
@@ -102,5 +102,17 @@ t_command	set_token(t_all *all, char symbol);
 void		set_token_pipes(t_all *all, t_command *command, char symbol);
 int			set_fd(t_command *command, char *redir_type, char *file_name);
 int			set_fd_for_redirect(t_command *command);
+
+/*
+** parser for better understanding what function doing
+*/
+void		prepare_to_exec(t_all *all, t_lst **args,
+							t_lst **last_arg, char **data);
+void		handle_space_arrow(t_all *all, char **data,
+							t_lst **last_arg, int *arg_size);
+void		handle_special_symbol(t_all *all, char **arg,
+							char **data, int *arg_size);
+void		add_usual_symbol(t_lst **last_arg,
+							char **data, int *arg_size);
 
 #endif
