@@ -1,14 +1,16 @@
 #include "../headers/overall.h"
 
-int ft_pwd(void)
+void ft_pwd(void)
 {
-	char str[100];
+	char *buf;
 
-	if (getcwd(str, 100))
-	{
-		ft_putendl_fd(str, 1);
-		return (1);
-	}
+	buf = getcwd(NULL, 0)
+	g_errno = errno;
+	if (buf)
+		g_errno = 0;
 	else
-		return (0);
+		ft_putstr_fd(strerror(g_errno), 2);
+	ft_putstr_fd(buf, 1);
+	write(1, "\n", 1);
+	free(buf);
 }
