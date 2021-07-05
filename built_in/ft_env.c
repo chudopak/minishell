@@ -1,13 +1,12 @@
 #include "../headers/overall.h"
 
-int		ft_env(t_all *all)
+void ft_env(t_all *all)
 {
 	while(all->env != NULL)
 	{
 		ft_putstr_fd(all->env->str, 1);
-		ft_putstr_fd("\n", 1);
+		ft_putchar_fd('\n', 1);
 		all->env = all->env->next;
 	}
 	g_errno = 0;
-	return (1);
 }
