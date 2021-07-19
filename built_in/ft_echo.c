@@ -2,7 +2,7 @@
 
 static int is_n(char *string)
 {
-	if (ft_strcmp(string, "-n"))
+	if (ft_strcmp(string, "-n") == 0)
 		return (1);
 	return (0);
 }
