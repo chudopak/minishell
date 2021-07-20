@@ -12,8 +12,15 @@
 #define FLAG_6 (1 << 6) // 64
 #define FLAG_7 (1 << 7) // 128*/
 
+typedef struct s_lst_item {
+	char			*key;
+	char			*value;
+	int				identifir;
+}					t_lst_item;
+
 typedef struct s_lst{
 	char			*str;
+	//t_lst_item	*item;		//should be
 	struct s_lst	*next;
 }					t_lst;
 
