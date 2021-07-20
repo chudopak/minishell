@@ -6,7 +6,8 @@ int	set_fd(t_command *command, char *redir_type, char *file_name)
 	{
 		if (command->redirectout != -1)
 			close(command->redirectout);
-		command->redirectout = open(file_name, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+		command->redirectout = open(file_name,
+				O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
 		if (command->redirectout == -1)
 			return (puterror1(file_name, ": ", strerror(errno), errno));
 	}
@@ -14,7 +15,8 @@ int	set_fd(t_command *command, char *redir_type, char *file_name)
 	{
 		if (command->redirectout != -1)
 			close(command->redirectout);
-		command->redirectout = open(file_name, O_WRONLY | O_TRUNC | O_CREAT, S_IRWXU);
+		command->redirectout = open(file_name,
+				O_WRONLY | O_TRUNC | O_CREAT, S_IRWXU);
 		if (command->redirectout == -1)
 			return (puterror1(file_name, ": ", strerror(errno), errno));
 	}
@@ -37,8 +39,9 @@ int	set_fd_for_redirect(t_command *command)
 	i = 0;
 	while (command->cmd[i])
 	{
-		if (!ft_strcmp(command->cmd[i], ">>") || !ft_strcmp(command->cmd[i], ">")
-				|| !ft_strcmp(command->cmd[i], "<"))
+		if (!ft_strcmp(command->cmd[i], ">>")
+			|| !ft_strcmp(command->cmd[i], ">")
+			|| !ft_strcmp(command->cmd[i], "<"))
 		{
 			status = set_fd(command, command->cmd[i], *(command->cmd + i + 1));
 			if (status)
