@@ -41,6 +41,7 @@ void ft_exit(char **args)
 		ft_putstr_fd(str, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		g_errno = 1;
+		exit(255);
 	}
 	if (*args && is_numeral(*args))
 		exit(ft_atoi(*args));
