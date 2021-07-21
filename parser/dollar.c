@@ -23,6 +23,8 @@ int	add_g_errno(char **arg, char **data, int *arg_size)
 
 static int	undefine_behavior(char **data)
 {
+	if (*(*data + 1) == '_')
+		return (0);
 	if ((*(*data + 1) >= ' ' && *(*data + 1) <= '/') || (*(*data + 1) >= ':'
 			&& *(*data + 1) <= 62) || *(*data + 1) == 64
 		|| (*(*data + 1) >= 91 && *(*data + 1) <= 96)

@@ -1,31 +1,26 @@
 #include "../headers/overall.h"
 
-int	cmp_data_to_env(char *s1, char *s2)
+int	cmp_data_to_env(char *data, char *key)
 {
-	while (*s1 && *s2)
+	if (*key == '_' && !*(key + 1))
+		return (1);
+	while (*data && *key)
 	{
-		if (*s1 != *s2)
-		{
-			if (((*s1 >= ' ' && *s1 <= '/') || (*s1 >= ':' && *s1 <= 64)
-					|| (*s1 >= 91 && *s1 <= 96)
-					|| (*s1 >= 123 && *s1 <= 126)) && *s2 == '=')
-				return (0);
-			else
-				return (1);
-		}
-		s1++;
-		s2++;
+		if (*data != *key)
+			return (1);
+		data++;
+		key++;
 	}
-	if (!*s1 && *s2 == '=')
+	if (!*key && *data != '_' && ((*data >= ' ' && *data <= '/')
+			|| (*data >= ':' && *data <= 64)
+			|| (*data >= 91 && *data <= 96)
+			|| (*data >= 123 && *data <= 126) || !*data))
 		return (0);
 	return (1);
 }
 
 int	add_matched_argument(char **arg, char *env_arg, int *arg_size)
 {
-	while (*env_arg != '=')
-		env_arg++;
-	env_arg++;
 	while (*env_arg)
 	{
 		*arg = char_join(arg, *env_arg, *arg_size);
@@ -49,10 +44,10 @@ void	skip_unnecessary_symbols(char **data, t_env_list *tmp)
 	}
 	else
 	{
-		i = -1;
 		while ((**data >= '0' && **data <= '9')
 			|| ('A' <= **data && **data <= 'Z')
-			|| ('a' <= **data && **data <= 'z'))
+			|| ('a' <= **data && **data <= 'z')
+			|| **data == '_')
 			(*data)++;
 	}
 }
