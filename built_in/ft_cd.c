@@ -16,7 +16,7 @@ void ft_cd(t_all *all, char *new_path)
 	char 		*old_pwd;
 
 	if (!new_path)
-		new_path = ft_env_list_get_value(*list, "HOME");
+		new_path = ft_env_list_get_value(all->env, "HOME");
 	if (chdir(new_path) == -1)
 	{
 		g_errno = errno;

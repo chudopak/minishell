@@ -20,6 +20,19 @@ PARSER=		parser/auxiliary_parser.c \
 
 UTILS=		utils/env_utils.c
 
+BUILT_IN=	built_in/ft_cd.c \
+			built_in/ft_echo.c \
+			built_in/ft_env.c \
+			built_in/ft_exit.c \
+			built_in/ft_export.c \
+			built_in/ft_pwd.c \
+			built_in/ft_unset.c
+
+ENV_FUNC=	built_in/ft_env_func/env_utils1.c \
+			built_in/ft_env_func/env_utils2.c \
+			built_in/ft_env_func/env_utils3.c \
+			built_in/ft_env_func/env_utils4.c
+
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \
 			sources/history.c \
@@ -33,9 +46,9 @@ SOURCES=	sources/handle_input.c \
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c
 
-SRC=		$(PARSER) ${SOURCES} ${GNL} ${UTILS} minishell.c
+SRC=		$(PARSER) ${SOURCES} ${GNL} ${UTILS} ${ENV_FUNC} ${BUILT_IN} minishell.c
 
-OBJ=		$(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) $(UTILS:.c=.o) minishell.o
+OBJ=		$(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) $(UTILS:.c=.o) $(ENV_FUNC:.c=.o) $(BUILT_IN:.c=.o) minishell.o
 
 %.o: %.c 
 	gcc $(FLAGS) $< -c -o $(<:.c=.o)

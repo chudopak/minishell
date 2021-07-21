@@ -4,7 +4,7 @@ void ft_pwd(void)
 {
 	char *buf;
 
-	buf = getcwd(NULL, 0)
+	buf = getcwd(NULL, 0);
 	g_errno = errno;
 	if (buf)
 		g_errno = 0;

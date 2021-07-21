@@ -58,8 +58,6 @@ typedef struct	s_all
 }				t_all;
 
 int			parser(char *data, /*t_lst **env*/ t_all *all);
-int			ft_pwd(void);
-int			ft_echo(t_lst *list);
 void		handle_input(t_all *all);
 void		get_history_comand(t_all *all, char *str);
 void		add_symbol(t_all *all, char *str, int ret, char *cmd);
@@ -77,12 +75,38 @@ void		push_writen_in_history(t_all *all);
 void		set_head_of_history(t_all *all);
 
 /*
+** Built_in
+*/
+
+void		ft_exit(char **args);
+void		ft_env(t_all *all);
+void		ft_unset(t_all *all, char **args);
+void		ft_cd(t_all *all, char *new_path);
+void		ft_echo(char **args);
+void		ft_pwd(void);
+void		ft_export(char **args, t_all *all);
+
+/*
 ** Utils1
 */
 void		rm_node(t_all *all);
 int			unprint_symbols(char *str);
 void		remove_elem_history(t_all *all);
 int			is_separator(char c);
+int			is_correct_str(const char *str);
+void		ft_env_list_print(t_env_list *env_list);
+void		ft_env_list_print_with_declare(t_env_list *env_list);
+int			ft_env_list_remove(t_env_list **list, char *key);
+t_env_list	*ft_env_list_new(t_env_item *env_item);
+int			ft_env_list_len(t_env_list *env_list);
+char		*ft_env_list_get_value(t_env_list *env_list, char *key);
+t_env_list	*ft_env_list_copy(t_env_list *list);
+void		ft_env_item_free(t_env_item *item);
+t_env_item	*ft_env_item_new(char *key, int id, char *value);
+void		ft_env_list_add_back(t_env_list **env_list, t_env_list *new);
+void		ft_env_item_del(t_env_item *item);
+void		ft_env_list_clear(t_env_list **lst);
+t_env_item	*ft_get_env_item_with_key(t_env_list *list, char *key);
 
 /*
 ** Error's managment

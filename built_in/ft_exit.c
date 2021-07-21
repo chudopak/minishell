@@ -38,7 +38,7 @@ void ft_exit(char **args)
 	if (*args && !is_numeral(*args))
 	{
 		ft_putstr_fd("exit: ", 2);
-		ft_putstr_fd(str, 2);
+		ft_putstr_fd(*args, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		g_errno = 1;
 		exit(255);

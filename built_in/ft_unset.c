@@ -24,7 +24,7 @@ void ft_unset(t_all *all, char **args)
 		if (!is_correct_str(*args))
 		{
 			ft_putstr_fd("unset: `", 2);
-			ft_putstr_fd(str, 2);
+			ft_putstr_fd(*args, 2);
 			ft_putstr_fd("': not a valid identifier\n", 2);
 			g_errno = 1;
 		}
