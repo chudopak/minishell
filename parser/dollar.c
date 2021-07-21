@@ -50,7 +50,7 @@ static int	handle_question_and_endline(char **arg, char **data, int *arg_size)
 	return (ALL_OK);
 }
 
-int	dollar(char **arg, char **data, int *arg_size, t_lst **env)
+int	dollar(char **arg, char **data, int *arg_size, t_env_list **env)
 {
 	if (undefine_behavior(data))
 	{

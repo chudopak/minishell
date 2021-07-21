@@ -16,7 +16,7 @@ int	what_is_after_qoutes(char **data, int *arg_size, char **arg)
 /*   if it end with '\0' and didn't clode quotes it still **
 **   return argument and work but it udefined behavior    */
 
-int	double_quotes(char **arg, char **data, int *arg_size, t_lst **env)
+int	double_quotes(char **arg, char **data, int *arg_size, t_env_list **env)
 {
 	(*data)++;
 	while (**data != '\"' && **data)
@@ -61,7 +61,7 @@ int	single_quotes(char **arg, char **data, int *arg_size)
 	return (ALL_OK);
 }
 
-int	special_symbol(char **arg, char **data, int *arg_size, t_lst **env)
+int	special_symbol(char **arg, char **data, int *arg_size, t_env_list **env)
 {
 	if (**data == '\"')
 	{

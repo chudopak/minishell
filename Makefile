@@ -1,6 +1,6 @@
-NAME		= minishell
-LIBFT		= libft/libft.a
-FLAGS		= -Wall -Wextra -Werror -g
+NAME=		minishell
+LIBFT=		libft/libft.a
+FLAGS=		-Wall -Wextra -Werror -g
 
 HEADERS=	headers/overall.h \
 			headers/parser.h
@@ -18,6 +18,8 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/set_fd_for_redirect.c \
 			parser/parser2.c
 
+UTILS=		utils/env_utils.c
+
 SOURCES=	sources/handle_input.c \
 			sources/errors.c \
 			sources/history.c \
@@ -31,9 +33,9 @@ SOURCES=	sources/handle_input.c \
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c
 
-SRC=		$(PARSER) ${SOURCES} ${GNL} minishell.c
+SRC=		$(PARSER) ${SOURCES} ${GNL} ${UTILS} minishell.c
 
-OBJ			= $(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) minishell.o
+OBJ=		$(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) $(UTILS:.c=.o) minishell.o
 
 %.o: %.c 
 	gcc $(FLAGS) $< -c -o $(<:.c=.o)

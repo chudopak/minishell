@@ -42,7 +42,7 @@ typedef struct	s_command {
 
 typedef struct	s_all
 {
-	t_lst			*env;
+	t_env_list		*env;
 	t_history		*current_cmd;
 	t_history		*head_history;
 	t_history		*stroller;
@@ -114,5 +114,13 @@ void		handle_special_symbol(t_all *all, char **arg,
 							char **data, int *arg_size);
 void		add_usual_symbol(t_lst **last_arg,
 							char **data, int *arg_size);
+
+/*
+** utils for interact with env structure
+*/
+t_env_item	*new_env_item(char *key, int id, char *value);
+t_env_list	*new_env_list(t_env_item *env_item);
+void		env_list_add_back(t_env_list **env_list, t_env_list *new);
+void		free_env_item(t_env_item *item);
 
 #endif

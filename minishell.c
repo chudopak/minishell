@@ -16,9 +16,20 @@ static void	set_all(t_all *all, char **envp)
 	ioctl(1, TIOCGWINSZ, &all->win);
 	set_history(all);
 	environment_to_struct(&(all->env), envp);
-	all->term_name = "xterm-256color";
+	while (all->env)
+	{
+		printf("ENVP - %s\n", *envp);
+		printf("id - %d\n", all->env->item->id);
+		printf("key - %s\n", all->env->item->key);
+		printf("value - %s\n", all->env->item->value);
+		printf("------------------------------\n");
+		all->env = all->env->next;
+		envp++;
+	}
+	while (1);
 	if (!all->env)
 		errors("Error: can't load evironment.\n", ENV_ERROR);
+	all->term_name = "xterm-256color";
 	if (tcgetattr(0, &(all->term)))
 		errors("Error: can't get terminal attrebuts.\n", TERM_ERROR);																//error managment
 	tgetent(0, all->term_name);

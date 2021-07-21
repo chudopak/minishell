@@ -13,15 +13,15 @@
 #define FLAG_7 (1 << 7) // 128*/
 
 typedef struct s_env_item {
-	char			*key;
-	char			*value;
-	int				identifir;
-}					t_env_item;
+	char				*key;
+	char				*value;
+	int					id;
+}						t_env_item;
 
 typedef struct s_env_list {
-	t_env_item		*item;
-	struct s_lst	*next;
-}					t_env_list;
+	t_env_item			*item;
+	struct s_env_list	*next;
+}						t_env_list;
 
 typedef struct s_lst{
 	char			*str;
@@ -40,7 +40,7 @@ typedef struct s_redirect {
 	int			semicolon;
 }				t_status;*/
 
-void	environment_to_struct(t_lst **env, char **envp);
+void	environment_to_struct(t_env_list **env, char **envp);
 t_lst	*lstnew_char(char *content);
 void	lst_add_back(t_lst **lst, t_lst *new);
 void	lstclear_char(t_lst **lst);
@@ -48,11 +48,11 @@ int		lst_size(t_lst *lst);
 void	lst_clear(t_lst *lst);
 void	lst_delone(t_lst *lst);
 char	*char_join(char **arg, char symbol, int arg_size);
-int		special_symbol(char **arg, char **data, int *arg_size, t_lst **env);
-int		double_quotes(char **arg, char **data, int *arg_size, t_lst **env);
-int		dollar(char **arg, char **data, int *arg_size, t_lst **env);
-int		get_env_ergument(char **arg, char **data, int *arg_size, t_lst **env);
-void	skip_unnecessary_symbols(char **data, t_lst *tmp);
+int		special_symbol(char **arg, char **data, int *arg_size, t_env_list **env);
+int		double_quotes(char **arg, char **data, int *arg_size, t_env_list **env);
+int		dollar(char **arg, char **data, int *arg_size, t_env_list **env);
+int		get_env_ergument(char **arg, char **data, int *arg_size, t_env_list **env);
+void	skip_unnecessary_symbols(char **data, t_env_list *tmp);
 int		add_matched_argument(char **arg, char *env_arg, int *arg_size);
 int		backslash_double_quotes(char **arg, char **data, int *arg_size);
 int		cmp_data_to_env(char *s1, char *s2);

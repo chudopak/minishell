@@ -37,14 +37,14 @@ int	add_matched_argument(char **arg, char *env_arg, int *arg_size)
 	return (ALL_OK);
 }
 
-void	skip_unnecessary_symbols(char **data, t_lst *tmp)
+void	skip_unnecessary_symbols(char **data, t_env_list *tmp)
 {
 	int		i;
 
 	if (tmp)
 	{
 		i = -1;
-		while ((tmp->str)[++i] == **data && *data && (tmp->str)[i])
+		while ((tmp->item->key)[++i] == **data && *data && (tmp->item->key)[i])
 			(*data)++;
 	}
 	else
@@ -57,17 +57,17 @@ void	skip_unnecessary_symbols(char **data, t_lst *tmp)
 	}
 }
 
-int	get_env_ergument(char **arg, char **data, int *arg_size, t_lst **env)
+int	get_env_ergument(char **arg, char **data, int *arg_size, t_env_list **env)
 {
-	t_lst	*tmp;
+	t_env_list	*tmp;
 
 	(*data)++;
 	tmp = *env;
 	while (tmp)
 	{
-		if (cmp_data_to_env(*data, tmp->str) == 0)
+		if (cmp_data_to_env(*data, tmp->item->key) == 0)
 		{
-			if (add_matched_argument(arg, tmp->str, arg_size))
+			if (add_matched_argument(arg, tmp->item->value, arg_size))
 				return (BAD_MALLOC);
 			break ;
 		}

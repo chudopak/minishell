@@ -1,18 +1,67 @@
 #include "../headers/overall.h"
 
-void	environment_to_struct(t_lst **env, char **envp)
+static int	find_key_len(const char *envp_str)
 {
-	t_lst	*tmp;
+	int		len;
 
+	len = 0;
+	if (!envp_str)
+		return (0);
+	if (!(*envp_str == '_' || ft_isalpha(*envp_str)))
+		return (0);
+	len++;
+	while (envp_str[len] && (envp_str[len] == '_' || ft_isalnum(envp_str[len])))
+		len++;
+	return (len);
+}
+
+static int	set_id(const char *envp_str)
+{
+	if (*envp_str == '\0')
+		return (0);
+	if (*envp_str == '=')
+		return (1);
+	if (*envp_str == '+' && *(envp_str + 1) == '=')
+		return (2);
+	return (-1);
+}
+
+static t_env_item	*get_env_item(const char *envp_str)
+{
+	int			key_len;
+	t_env_item	*item;
+
+	item = new_env_item(NULL, -1, NULL);
+	if (!item)
+		return (NULL);
+	key_len = find_key_len(envp_str);
+	item->key = ft_strndup(envp_str, key_len);
+	item->id = set_id(envp_str + key_len);
+	if (item->id != -1)
+		item->value = ft_strdup(envp_str + key_len + item->id);
+	return (item);
+}
+
+void	environment_to_struct(t_env_list **env, char **envp)
+{
+	t_env_item	*env_item;
+	t_env_list	*tmp_list;
+
+	*env = NULL;
+	if (envp == NULL)
+		return ;
 	while (*envp)
 	{
-		tmp = lstnew_char(*envp);
-		if (!tmp)
+		env_item = get_env_item(*envp);
+		if (env_item == NULL)
+			break ;
+		tmp_list = new_env_list(env_item);
+		if (!tmp_list)
 		{
-			lstclear_char(env);
-			return ;
+			free_env_item(env_item);
+			break ;
 		}
-		lst_add_back(env, tmp);
+		env_list_add_back(env, tmp_list);
 		envp++;
 	}
 }
