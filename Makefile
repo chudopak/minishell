@@ -41,7 +41,8 @@ SOURCES=	sources/handle_input.c \
 			sources/puterror.c \
 			sources/syntax_error_checker.c \
 			sources/set_history.c \
-			sources/lst_interact_functions.c
+			sources/lst_interact_functions.c \
+			sources/exec.c
 
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c

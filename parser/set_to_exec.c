@@ -33,10 +33,11 @@ static int	set_new_lst(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 
 static void	print_command(char **cmd)
 {
+	(void )cmd;
 	printf("--------------------------\n");
-	for (int i = 0; cmd[i]; i++)
-		printf("%s\n", cmd[i]);
-	printf("--------------------------\n");
+//	for (int i = 0; cmd[i]; i++)
+//		printf("%s\n", cmd[i]);
+//	printf("--------------------------\n");
 }
 
 int	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
@@ -53,6 +54,7 @@ int	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 		if (set_fd_for_redirect(&command))
 			;
 	}
+	distribution_to_exec(all, &command);
 	/*
 		else
 			**ALMAZ, mesto dlya tvoei function

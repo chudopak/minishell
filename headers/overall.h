@@ -87,6 +87,12 @@ void		ft_pwd(void);
 void		ft_export(char **args, t_all *all);
 
 /*
+** Logic
+*/
+
+void	distribution_to_exec(t_all *all, t_command *command);
+
+/*
 ** Utils1
 */
 void		rm_node(t_all *all);
