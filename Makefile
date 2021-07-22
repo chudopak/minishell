@@ -34,6 +34,8 @@ ENV_FUNC=	built_in/ft_env_func/env_utils1.c \
 			built_in/ft_env_func/env_utils4.c
 
 SOURCES=	sources/handle_input.c \
+			sources/copy_envp.c \
+			sources/set_path.c \
 			sources/errors.c \
 			sources/history.c \
 			sources/utils1.c \

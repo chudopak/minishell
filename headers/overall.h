@@ -19,6 +19,7 @@
 # define BAD_MALLOC 1
 # define TERM_ERROR 2
 # define ENV_ERROR 3
+# define PATH_MISSING 4
 
 /* History limit*/
 # define HISTORY_LIMIT 10
@@ -50,6 +51,8 @@ typedef struct	s_all
 	struct termios	term_default_set;
 	struct winsize 	win;
 	char			*term_name;
+	char			*path;
+	char			**envp_copy;
 	int				cursor_pos;
 	int				writen_symblos;
 	int				cmd_in_history;
@@ -66,6 +69,8 @@ void		manage_backspace(t_all *all);
 char		*delete_symbol(t_all *all);
 int			handle_arrows(t_all *all, char **data, t_lst **last_arg);
 int			set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data);
+void		copy_envp(t_all *all, char **envp);
+void		set_path(t_env_list *env, char **path);
 /*
 ** history
 */

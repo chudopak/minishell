@@ -54,12 +54,12 @@ void	environment_to_struct(t_env_list **env, char **envp)
 	{
 		env_item = get_env_item(*envp);
 		if (env_item == NULL)
-			break ;
+			errors("Error: malloc error in \"environment_to_struct\".\n", BAD_MALLOC);
 		tmp_list = new_env_list(env_item);
 		if (!tmp_list)
 		{
 			free_env_item(env_item);
-			break ;
+			errors("Error: malloc error in \"environment_to_struct\".\n", BAD_MALLOC);
 		}
 		env_list_add_back(env, tmp_list);
 		envp++;
