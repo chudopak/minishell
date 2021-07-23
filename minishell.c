@@ -16,8 +16,8 @@ static void	set_all(t_all *all, char **envp)
 	ioctl(1, TIOCGWINSZ, &all->win);
 	set_history(all);
 	environment_to_struct(&(all->env), envp);
-	if (!all->env)
-		errors("Error: can't load evironment.\n", ENV_ERROR);
+	copy_envp(all, envp);
+	set_path(all->env, &(all->path));
 	all->term_name = "xterm-256color";
 	if (tcgetattr(0, &(all->term)))
 		errors("Error: can't get terminal attrebuts.\n", TERM_ERROR);																//error managment
