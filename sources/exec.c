@@ -1,22 +1,32 @@
 #include "../headers/overall.h"
 
-void launch_exec(char **args)
+void launch_exec(t_all *all, char **args, t_command *command)
 {
 	pid_t	pid;
-	pid_t	wpid;
+	char *correct_path;
 
+	correct_path = split_path(all, command);
+	if (!correct_path)
+	{
+		puterror("command not found", 1);
+		return ;
+	}
 	pid = fork();
-	(void) args;
 	if (pid == 0)
 	{
 		// child process
-//		if (execve())
-//		{}
+		if (execve(correct_path, args, all->envp_copy) == -1)
+		{
+			g_errno = errno;
+		}
+			exit(g_errno);
 	}
 	else if (pid < 0)
-		puterror("failed to fork", 1);
+		// fail
+		puterror("fork failed", 1);
 	else
-		wpid = wait(&pid);
+		// parent process
+		wait(&pid);
 }
 
 static int find_built_in_func2(t_all *all, t_command *command)
@@ -26,12 +36,12 @@ static int find_built_in_func2(t_all *all, t_command *command)
 		ft_exit(&command->cmd[1]);
 		return (1);
 	}
-	if (!ft_strcmp(command->cmd[0], "unset"))
+	else if (!ft_strcmp(command->cmd[0], "unset"))
 	{
 		ft_unset(all, &command->cmd[1]);
 		return (1);
 	}
-	if (!ft_strcmp(command->cmd[0], "export"))
+	else if (!ft_strcmp(command->cmd[0], "export"))
 	{
 		ft_export(&command->cmd[1], all);
 		return (1);
@@ -45,17 +55,17 @@ static int find_built_in_func(t_all *all, t_command *command)
 		ft_echo(&command->cmd[1]);
 		return (1);
 	}
-	if (!ft_strcmp(command->cmd[0], "cd"))
+	else if (!ft_strcmp(command->cmd[0], "cd"))
 	{
 		ft_cd(all, command->cmd[1]);
 		return (1);
 	}
-	if (!ft_strcmp(command->cmd[0], "env"))
+	else if (!ft_strcmp(command->cmd[0], "env"))
 	{
 		ft_env(all);
 		return (1);
 	}
-	if (!ft_strcmp(command->cmd[0], "pwd"))
+	else if (!ft_strcmp(command->cmd[0], "pwd"))
 	{
 		ft_pwd();
 		return (1);
@@ -66,5 +76,5 @@ static int find_built_in_func(t_all *all, t_command *command)
 void distribution_to_exec(t_all *all, t_command *command)
 {
 	if (!find_built_in_func(all, command))
-		launch_exec(command->cmd);
+		launch_exec(all, command->cmd, command);
 }

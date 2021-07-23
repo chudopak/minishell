@@ -10,6 +10,8 @@
 # include <sys/ioctl.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include "parser.h"
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
@@ -118,6 +120,7 @@ void		ft_env_list_add_back(t_env_list **env_list, t_env_list *new);
 void		ft_env_item_del(t_env_item *item);
 void		ft_env_list_clear(t_env_list **lst);
 t_env_item	*ft_get_env_item_with_key(t_env_list *list, char *key);
+char		*split_path(t_all *all, t_command *command);
 
 /*
 ** Error's managment
