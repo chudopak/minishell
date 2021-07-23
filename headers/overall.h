@@ -107,9 +107,12 @@ int			unprint_symbols(char *str);
 void		remove_elem_history(t_all *all);
 int			is_separator(char c);
 int			is_correct_str(const char *str);
+int			find_name_len(const char *str);
+int			set_id(const char *envp_str);
 void		ft_env_list_print(t_env_list *env_list);
 void		ft_env_list_print_with_declare(t_env_list *env_list);
 int			ft_env_list_remove(t_env_list **list, char *key);
+void		ft_env_list_replace(t_env_list *list, t_env_item *new_item);
 t_env_list	*ft_env_list_new(t_env_item *env_item);
 int			ft_env_list_len(t_env_list *env_list);
 char		*ft_env_list_get_value(t_env_list *env_list, char *key);
@@ -119,7 +122,9 @@ t_env_item	*ft_env_item_new(char *key, int id, char *value);
 void		ft_env_list_add_back(t_env_list **env_list, t_env_list *new);
 void		ft_env_item_del(t_env_item *item);
 void		ft_env_list_clear(t_env_list **lst);
+int			ft_env_key_exist(t_env_list *list, char *key);
 t_env_item	*ft_get_env_item_with_key(t_env_list *list, char *key);
+t_env_item	*get_env_item_from_envp_string(const char *envp_string);
 char		*split_path(t_all *all, t_command *command);
 
 /*

@@ -1,5 +1,20 @@
 #include "../headers/overall.h"
 
+int	find_name_len(const char *str)
+{
+	int	len;
+
+	len = 0;
+	if (!str)
+		return (0);
+	if (!(*str == '_' || ft_isalpha(*str)))
+		return (0);
+	len++;
+	while (str[len] && (str[len] == '_' || ft_isalnum(str[len])))
+		len++;
+	return (len);
+}
+
 static void	free_map(char **map)
 {
 	while (*map)

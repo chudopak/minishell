@@ -15,7 +15,7 @@ static int	find_key_len(const char *envp_str)
 	return (len);
 }
 
-static int	set_id(const char *envp_str)
+int	set_id(const char *envp_str)
 {
 	if (*envp_str == '\0')
 		return (0);

@@ -16,10 +16,8 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	{
 		// child process
 		if (execve(correct_path, args, all->envp_copy) == -1)
-		{
 			g_errno = errno;
-		}
-			exit(g_errno);
+		exit(g_errno);
 	}
 	else if (pid < 0)
 		// fail

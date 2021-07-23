@@ -32,7 +32,8 @@ BUILT_IN=	built_in/ft_cd.c \
 ENV_FUNC=	built_in/ft_env_func/env_utils1.c \
 			built_in/ft_env_func/env_utils2.c \
 			built_in/ft_env_func/env_utils3.c \
-			built_in/ft_env_func/env_utils4.c
+			built_in/ft_env_func/env_utils4.c \
+			built_in/ft_env_func/env_utils5.c \
 
 SOURCES=	sources/handle_input.c \
 			sources/copy_envp.c \
