@@ -10,7 +10,6 @@ static int is_n(char *string)
 void ft_echo(char **args)
 {
 	int flag_n;
-
 	flag_n = is_n(*args);
 	while (*args && ft_strcmp("-n", *args) == 0)
 		args++;

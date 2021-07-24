@@ -46,7 +46,8 @@ SOURCES=	sources/handle_input.c \
 			sources/syntax_error_checker.c \
 			sources/set_history.c \
 			sources/lst_interact_functions.c \
-			sources/exec.c
+			sources/exec.c \
+			sources/pipes_utils.c
 
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c

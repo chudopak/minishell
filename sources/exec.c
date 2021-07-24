@@ -8,7 +8,8 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	correct_path = split_path(all, command);
 	if (!correct_path)
 	{
-		puterror("command not found", 1);
+		ft_putstr_fd(*command->cmd, STDOUT_FILENO);
+		puterror("command not found", g_errno);
 		return ;
 	}
 	pid = fork();
@@ -73,6 +74,8 @@ static int find_built_in_func(t_all *all, t_command *command)
 
 void distribution_to_exec(t_all *all, t_command *command)
 {
+	check_right_pipe(all, command);
 	if (!find_built_in_func(all, command))
 		launch_exec(all, command->cmd, command);
+	check_left_pipe(all, command);
 }

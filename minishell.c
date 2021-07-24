@@ -11,6 +11,8 @@ static void	set_all(t_all *all, char **envp)
 	all->writen_symblos = 0;
 	all->cmd_in_history = 0;
 	all->env = NULL;
+	all->stdout_tmp = dup(STDOUT_FILENO);
+	all->stdin_tmp = dup(STDIN_FILENO);
 	//signal(SIGINT, handle_signals);
 	//signal(SIGQUIT, handle_signals);
 	ioctl(1, TIOCGWINSZ, &all->win);

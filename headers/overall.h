@@ -35,12 +35,15 @@ typedef struct s_history
 	struct s_history	*prev;
 }						t_history;
 
-typedef struct	s_command {
+typedef struct	s_command
+{
 	char		**cmd;
 	int			pipein;
 	int			pipeout;
 	int			redirectin;
 	int			redirectout;
+	int 		fd_in;
+	int 		fd_out;
 }				t_command;
 
 typedef struct	s_all
@@ -54,6 +57,9 @@ typedef struct	s_all
 	struct winsize 	win;
 	char			*term_name;
 	char			*path;
+	int 			fd[2];
+	int 			stdout_tmp;
+	int 			stdin_tmp;
 	char			**envp_copy;
 	int				cursor_pos;
 	int				writen_symblos;
@@ -97,7 +103,10 @@ void		ft_export(char **args, t_all *all);
 ** Logic
 */
 
-void	distribution_to_exec(t_all *all, t_command *command);
+void		distribution_to_exec(t_all *all, t_command *command);
+void		open_pipes(t_all *all, t_command *command);
+void		check_right_pipe(t_all *all, t_command *command);
+void		check_left_pipe(t_all *all, t_command *command);
 
 /*
 ** Utils1
