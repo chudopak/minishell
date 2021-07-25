@@ -42,8 +42,6 @@ typedef struct	s_command
 	int			pipeout;
 	int			redirectin;
 	int			redirectout;
-	int 		fd_in;
-	int 		fd_out;
 }				t_command;
 
 typedef struct	s_all
