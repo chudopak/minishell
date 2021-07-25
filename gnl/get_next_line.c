@@ -6,7 +6,7 @@
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 11:46:05 by pmarash           #+#    #+#             */
-/*   Updated: 2021/07/25 18:04:47 by vping            ###   ########.fr       */
+/*   Updated: 2021/07/25 19:36:59 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ int	get_next_line(int fd, char **line)
 
 	buff = malloc(BUFFER_SIZE + 1);
 	if (fd < 0 || !line || BUFFER_SIZE < 1
-		|| !buff || read(fd, buff, 0) < 0)
+		|| !(buff = malloc(BUFFER_SIZE + 1)) || read(fd, buff, 0) < 0)
 		return (-1);
-	i = search_index(str, '\n');
-	if (str && i != -1))
+	if (str && (((i = search_index(str, '\n')) != -1)))
 	{
 		free(buff);
 		return (get_line(str, line, i));
