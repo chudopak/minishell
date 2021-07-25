@@ -1,4 +1,4 @@
-# include "../../headers/overall.h"
+#include "../../headers/overall.h"
 
 t_env_item	*get_env_item_from_envp_string(const char *envp_string)
 {
@@ -16,7 +16,7 @@ t_env_item	*get_env_item_from_envp_string(const char *envp_string)
 	return (item);
 }
 
-int ft_env_key_exist(t_env_list *list, char *key)
+int	ft_env_key_exist(t_env_list *list, char *key)
 {
 	while (list)
 	{
