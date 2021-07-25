@@ -26,8 +26,8 @@ static void	free_map(char **map)
 
 char	*split_path(t_all *all, t_command *command)
 {
-	char **splitted;
-	char *correct_path;
+	char		**splitted;
+	char		*correct_path;
 	struct stat	buf;
 
 	splitted = ft_split(all->path, ':');
