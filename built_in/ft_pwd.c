@@ -1,8 +1,8 @@
 #include "../headers/overall.h"
 
-void ft_pwd(void)
+void	ft_pwd(void)
 {
-	char *buf;
+	char	*buf;
 
 	buf = getcwd(NULL, 0);
 	g_errno = errno;

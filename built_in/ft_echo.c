@@ -1,15 +1,16 @@
 #include "../headers/overall.h"
 
-static int is_n(char *string)
+static int	is_n(char *string)
 {
 	if (ft_strcmp(string, "-n") == 0)
 		return (1);
 	return (0);
 }
 
-void ft_echo(char **args)
+void	ft_echo(char **args)
 {
-	int flag_n;
+	int	flag_n;
+
 	flag_n = is_n(*args);
 	while (*args && ft_strcmp("-n", *args) == 0)
 		args++;

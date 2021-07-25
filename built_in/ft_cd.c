@@ -1,6 +1,6 @@
 #include "../headers/overall.h"
 
-static void print_error(char *new_path)
+static void	print_error(char *new_path)
 {
 	ft_putstr_fd("cd: ", 2);
 	ft_putstr_fd((char *)new_path, 2);
@@ -9,11 +9,11 @@ static void print_error(char *new_path)
 	ft_putstr_fd("\n", 2);
 }
 
-void ft_cd(t_all *all, char *new_path)
+void	ft_cd(t_all *all, char *new_path)
 {
 	t_env_item	*tmp;
-	char 		*buf;
-	char 		*old_pwd;
+	char		*buf;
+	char		*old_pwd;
 
 	if (!new_path)
 		new_path = ft_env_list_get_value(all->env, "HOME");

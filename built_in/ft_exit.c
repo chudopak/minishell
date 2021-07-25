@@ -1,8 +1,8 @@
 #include "../headers/overall.h"
 
-static int is_numeral(char *str)
+static int	is_numeral(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_isdigit(str[i]) && str[i] != '\0')
@@ -16,7 +16,7 @@ static int is_numeral(char *str)
 
 static int	args_len(char **args)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (args[len])
@@ -24,7 +24,7 @@ static int	args_len(char **args)
 	return (len);
 }
 
-void ft_exit(char **args)
+void	ft_exit(char **args)
 {
 	ft_putstr_fd("exit\nIt was nice to see you\n", 2);
 	if (!*args || !args)

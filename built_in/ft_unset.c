@@ -1,6 +1,6 @@
 #include "../headers/overall.h"
 
-int		is_correct_str(const char *str)
+int	is_correct_str(const char *str)
 {
 	if (ft_isalpha(*str) || *str == '_')
 	{
@@ -16,7 +16,7 @@ int		is_correct_str(const char *str)
 	return (0);
 }
 
-void ft_unset(t_all *all, char **args)
+void	ft_unset(t_all *all, char **args)
 {
 	g_errno = 0;
 	while (*args)
