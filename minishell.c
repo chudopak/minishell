@@ -22,12 +22,12 @@ static void	set_all(t_all *all, char **envp)
 	set_path(all->env, &(all->path));
 	all->term_name = "xterm-256color";
 	if (tcgetattr(0, &(all->term)))
-		errors("Error: can't get terminal attrebuts.\n", TERM_ERROR);																//error managment
+		errors("Error: can't get terminal attrebuts.\n", TERM_ERROR);
 	tgetent(0, all->term_name);
 	all->cursor_pos = 0;
 }
 
-int		main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_all	all;
 

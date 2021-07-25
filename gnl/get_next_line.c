@@ -6,7 +6,7 @@
 /*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 11:46:05 by pmarash           #+#    #+#             */
-/*   Updated: 2020/12/24 17:42:16 by pmarash          ###   ########.fr       */
+/*   Updated: 2021/07/25 18:04:47 by vping            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,19 @@ static void	thks_norm(char **line, char **str, char **buff)
 	free(*buff);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char		*buff;
 	static char	*str;
 	int			buf_size;
 	int			i;
 
+	buff = malloc(BUFFER_SIZE + 1);
 	if (fd < 0 || !line || BUFFER_SIZE < 1
-			|| !(buff = malloc(BUFFER_SIZE + 1)) || read(fd, buff, 0) < 0)
+		|| !buff || read(fd, buff, 0) < 0)
 		return (-1);
-	if (str && (((i = search_index(str, '\n')) != -1)))
+	i = search_index(str, '\n');
+	if (str && i != -1))
 	{
 		free(buff);
 		return (get_line(str, line, i));
