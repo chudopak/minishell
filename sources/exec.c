@@ -75,10 +75,10 @@ static int find_built_in_func(t_all *all, t_command *command)
 
 void distribution_to_exec(t_all *all, t_command *command)
 {
-//	check_right_pipe(all, command);
-//	open_redirect(all, command);
+	check_right_pipe(all, command);
+	open_redirect(all, command);
 	if (!find_built_in_func(all, command))
 		launch_exec(all, command->cmd, command);
-//	close_redirect(all, command);
-//	check_left_pipe(all, command);
+	close_redirect(all, command);
+	check_left_pipe(all, command);
 }
