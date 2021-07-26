@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char		*join_and_free(char *str, char *buff)
+char	*join_and_free(char *str, char *buff)
 {
 	int		len1;
 	int		len2;
@@ -13,7 +13,8 @@ char		*join_and_free(char *str, char *buff)
 		return (NULL);
 	len1 = ft_strlen(str);
 	len2 = ft_strlen(buff);
-	if (!(dst = (char*)malloc((len1 + len2 + 1) * sizeof(char))))
+	dst = malloc((len1 + len2 + 1) * sizeof(char));
+	if (!dst)
 		return (NULL);
 	i = -1;
 	while (str[++i])
