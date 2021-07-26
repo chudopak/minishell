@@ -1,4 +1,5 @@
 #include "../headers/overall.h"
+
 static	int	actual_list_size(t_lst	*args)
 {
 	int		size;
@@ -6,7 +7,9 @@ static	int	actual_list_size(t_lst	*args)
 	size = 0;
 	while (args)
 	{
-		if (args->str[0])
+		if (args->str[0] == '>' || args->str[0] == '<')
+			return (size);
+		else if (args->str[0])
 			size++;
 		args = args->next;
 	}
@@ -71,7 +74,7 @@ int	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 	print_command(command.cmd, &command);
 	if (all->redirect)
 	{
-		if (set_fd_for_redirect(&command))
+		if (set_fd_for_redirect(*args, &command))
 			;
 	}
 	distribution_to_exec(all, &command);

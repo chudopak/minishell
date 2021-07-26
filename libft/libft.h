@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chudapak <chudapak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmarash <pmarash@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 15:37:12 by vping             #+#    #+#             */
-/*   Updated: 2021/07/20 18:53:10 by chudapak         ###   ########.fr       */
+/*   Updated: 2021/07/26 16:56:21 by pmarash          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void				ft_putendl(char *s);
 int					ft_putint(int c);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strndup(const char *s1, int n);
+char				*join_and_free(char *str, char *buff);
 
 #endif
