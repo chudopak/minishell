@@ -1,4 +1,17 @@
 #include "../headers/overall.h"
+static	int	actual_list_size(t_lst	*args)
+{
+	int		size;
+
+	size = 0;
+	while (args)
+	{
+		if (args->str[0])
+			size++;
+		args = args->next;
+	}
+	return (size);
+}
 
 static	char	**convert_to_array(t_lst *args)
 {
@@ -6,13 +19,17 @@ static	char	**convert_to_array(t_lst *args)
 	int		i;
 	char	**arguments;
 
-	size = lst_size(args);
+	size = actual_list_size(args);
 	arguments = malloc(sizeof(char *) * (size + 1));
 	arguments[size] = NULL;
-	i = -1;
-	while (++i < size)
+	i = 0;
+	while (i < size)
 	{
-		arguments[i] = ft_strdup(args->str);
+		if (args->str[0])
+		{
+			arguments[i] = ft_strdup(args->str);
+			i++;
+		}
 		args = args->next;
 	}
 	return (arguments);
