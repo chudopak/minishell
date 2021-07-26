@@ -76,8 +76,11 @@ int	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 	{
 		if (set_fd_for_redirect(*args, &command))
 			;
+		else
+			distribution_to_exec(all, &command);
 	}
-	distribution_to_exec(all, &command);
+	else
+		distribution_to_exec(all, &command);
 	clear_leftover(&command, args);
 	if (set_new_lst(all, args, last_arg, data))
 		errors("Error: malloc error in \"set_to_exec\".\n", BAD_MALLOC);

@@ -21,7 +21,7 @@ void	ft_echo(char **args)
 		if (*args)
 			ft_putchar_fd(' ', 1);
 	}
-	if (flag_n == 0)
+	if (flag_n == 1)
 		ft_putchar_fd('\n', 1);
 	g_errno = 0;
 }

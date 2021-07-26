@@ -13,7 +13,6 @@ static void	set_all(t_all *all, char **envp)
 	all->env = NULL;
 	all->stdout_tmp = dup(STDOUT_FILENO);
 	all->stdin_tmp = dup(STDIN_FILENO);
-	ft_putstr_fd(">", STDOUT_FILENO);
 	//signal(SIGINT, handle_signals);
 	//signal(SIGQUIT, handle_signals);
 	ioctl(1, TIOCGWINSZ, &all->win);
@@ -37,6 +36,7 @@ int	main(int ac, char **av, char **envp)
 	set_all(&all, envp);
 	while (1)
 	{
+		ft_putstr_fd(">", STDOUT_FILENO);
 		all.term.c_lflag &= ~(ECHO);
 		all.term.c_lflag &= ~(ICANON);
 		all.term.c_lflag &= ~(ISIG);
