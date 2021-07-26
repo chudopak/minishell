@@ -9,7 +9,6 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	if (!correct_path)
 	{
 		ft_putstr_fd(*command->cmd, STDOUT_FILENO);
-//		puterror("command not found", g_errno);
 		puterror2("command not found", ": ", STDOUT_FILENO);
 		return ;
 	}
