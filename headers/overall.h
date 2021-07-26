@@ -154,7 +154,7 @@ int			check_last_arg_for_null(t_lst *last_arg);
 t_command	set_token(t_all *all, char symbol);
 void		set_token_pipes(t_all *all, t_command *command, char symbol);
 int			set_fd(t_command *command, char *redir_type, char *file_name);
-int			set_fd_for_redirect(t_command *command);
+int			set_fd_for_redirect(t_lst *args, t_command *command);
 
 /*
 ** parser for better understanding what function doing

@@ -31,24 +31,46 @@ int	set_fd(t_command *command, char *redir_type, char *file_name)
 	return (0);
 }
 
-int	set_fd_for_redirect(t_command *command)
+int	set_fd_for_redirect(t_lst *args, t_command *command)
 {
-	int		i;
 	int		status;
 
-	i = 0;
-	while (command->cmd[i])
+	while (args)
 	{
-		if (!ft_strcmp(command->cmd[i], ">>")
-			|| !ft_strcmp(command->cmd[i], ">")
-			|| !ft_strcmp(command->cmd[i], "<"))
+		if (!ft_strcmp(args->str, ">>")
+			|| !ft_strcmp(args->str, ">")
+			|| !ft_strcmp(args->str, "<"))
 		{
-			status = set_fd(command, command->cmd[i], *(command->cmd + i + 1));
+			status = set_fd(command, args->str, (args->next)->str);
 			if (status)
 				return (-1);
-			i++;
+			args = args->next;
 		}
-		i++;
+		args = args->next;
 	}
 	return (0);
 }
+
+
+//int	set_fd_for_redirect(t_command *command)
+//{
+//	int		i;
+//	int		status;
+//
+//	i = 0;
+//	while (command->cmd[i])
+//	{
+//		if (!ft_strcmp(command->cmd[i], ">>")
+//			|| !ft_strcmp(command->cmd[i], ">")
+//			|| !ft_strcmp(command->cmd[i], "<"))
+//		{
+//			status = set_fd(command, command->cmd[i], *(command->cmd + i + 1));
+//			if (status)
+//				return (-1);
+//			i++;
+//		}
+//		i++;
+//	}
+//	return (0);
+//}
+//
