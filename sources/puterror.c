@@ -19,3 +19,12 @@ int	puterror1(char *base_msg, char *token, char *s, int error_code)
 	g_errno = error_code;
 	return (error_code);
 }
+
+int	puterror2(char *base_msg, char *token, int error_code)
+{
+	write(2, token, ft_strlen(token));
+	write(2, base_msg, ft_strlen(base_msg));
+	write(2, "\n", 1);
+	g_errno = error_code;
+	return (error_code);
+}

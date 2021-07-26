@@ -47,7 +47,8 @@ SOURCES=	sources/handle_input.c \
 			sources/set_history.c \
 			sources/lst_interact_functions.c \
 			sources/exec.c \
-			sources/pipes_utils.c
+			sources/pipes_utils.c \
+			sources/redirect_utils.c
 
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c

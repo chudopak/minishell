@@ -103,6 +103,8 @@ void		ft_export(char **args, t_all *all);
 
 void		distribution_to_exec(t_all *all, t_command *command);
 void		open_pipes(t_all *all, t_command *command);
+void		open_redirect(t_all *all, t_command *command);
+void		close_redirect(t_all *all, t_command *command);
 void		check_right_pipe(t_all *all, t_command *command);
 void		check_left_pipe(t_all *all, t_command *command);
 
@@ -139,6 +141,7 @@ char		*split_path(t_all *all, t_command *command);
 */
 int			puterror(char *msg, int error_code);
 int			puterror1(char *base_msg, char *token, char *s, int error_code);
+int			puterror2(char *base_msg, char *token, int error_code);
 void		errors(char *error_msg, int error_code);
 int			invalid_pipe_semicolom_token(char *data);
 int			syntax_error_checker(char *data);
