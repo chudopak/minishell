@@ -12,7 +12,7 @@ void	ft_echo(char **args)
 	int	flag_n;
 
 	flag_n = is_n(*args);
-	if (!args || !*args)
+	if (!*args)
 	{
 		ft_putchar_fd('\n', 1);
 		return ;
