@@ -52,7 +52,7 @@ static void	print_command(char **cmd, t_command *command)
 {
 	(void )cmd;
 	(void )command;
-	printf("--------------------------\n");
+//	printf("--------------------------\n");
 //	for (int i = 0; command->cmd[i]; i++)
 //		printf("%s\n", command->cmd[i]);
 //	printf("pipeout = %d\n", command->pipeout);
