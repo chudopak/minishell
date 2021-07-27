@@ -2,7 +2,7 @@
 
 static int	is_n(char *string)
 {
-	if (ft_strcmp(string, "-n") == 0)
+	if (ft_strncmp(string, "-n", 2) == 0)
 		return (1);
 	return (0);
 }
@@ -17,7 +17,7 @@ void	ft_echo(char **args)
 		ft_putchar_fd('\n', 1);
 		return ;
 	}
-	while (*args && ft_strcmp("-n", *args) == 0)
+	while (*args && ft_strncmp("-n", *args, 2) == 0)
 		args++;
 	while (*args)
 	{
