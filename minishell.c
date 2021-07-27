@@ -57,10 +57,10 @@ int	main(int ac, char **av, char **envp)
 	set_all(&all, envp);
 	while (1)
 	{
-		print_promt();
 		all.term.c_lflag &= ~(ECHO);
 		all.term.c_lflag &= ~(ICANON);
 		all.term.c_lflag &= ~(ISIG);
+		print_promt();
 		tcsetattr(0, TCSANOW, &all.term);
 		tputs(save_cursor, 1, ft_putint);
 		handle_input(&all);

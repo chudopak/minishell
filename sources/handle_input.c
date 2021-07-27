@@ -23,7 +23,6 @@ char	*delete_symbol(t_all *all)
 
 void	manage_backspace(t_all *all)
 {
-	//TIOCGWINSZ ioctl struct winsize win
 	if (!all->stroller->cmd || !*(all->stroller->cmd))
 		return ;
 	all->stroller->cmd = delete_symbol(all);
@@ -36,9 +35,9 @@ void	manage_backspace(t_all *all)
 
 static void	prepare_parsing(t_all *all)
 {
-	all->term.c_lflag |= ECHO;
-	all->term.c_lflag |= ICANON;
-	all->term.c_lflag |= ISIG;
+	all->term.c_lflag |= (ECHO);
+	all->term.c_lflag |= (ICANON);
+	all->term.c_lflag |= (ISIG);
 	all->writen_symblos = 0;
 	all->cursor_pos = 0;
 	if (all->stroller != all->current_cmd)
