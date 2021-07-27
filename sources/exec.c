@@ -2,7 +2,7 @@
 
 void launch_exec(t_all *all, char **args, t_command *command)
 {
-//	pid_t	pid;
+	pid_t	pid;
 	char *correct_path;
 
 	correct_path = split_path(all, command);
@@ -12,32 +12,33 @@ void launch_exec(t_all *all, char **args, t_command *command)
 		puterror2("command not found", ": ", STDOUT_FILENO);
 		return ;
 	}
-	all->envp_copy = env_to_charpp(all);
-	while (all->envp_copy != NULL)
-	{
-		printf("%s\n", *all->envp_copy);
-		all->envp_copy++;
-	}
-	(void )args;
-//	pid = fork();
-//	if (pid == 0)
+//	all->envp_copy = env_to_charpp(all);
+//	while (all->envp_copy != NULL)
 //	{
-//		// child process
-//		if (execve(correct_path, args, all->envp_copy) == -1)
-//		{
-//			ft_putstr_fd(*command->cmd, STDOUT_FILENO);
-//			puterror2("command not found", ": ", STDOUT_FILENO);
-//			return ;
-//			g_errno = errno;
-//		}
-//		exit(g_errno);
+//		printf("%s\n", *all->envp_copy);
+//		all->envp_copy++;
 //	}
-//	else if (pid < 0)
-//		// fail
-//		puterror("fork failed", 1);
-//	else
-//		// parent process
-//		wait(&pid);
+//	return ;
+//	(void )args;
+	pid = fork();
+	if (pid == 0)
+	{
+		// child process
+		if (execve(correct_path, args, all->envp_copy) == -1)
+		{
+			ft_putstr_fd(*command->cmd, STDOUT_FILENO);
+			puterror2("command not found", ": ", STDOUT_FILENO);
+			return ;
+			g_errno = errno;
+		}
+		exit(g_errno);
+	}
+	else if (pid < 0)
+		// fail
+		puterror("fork failed", 1);
+	else
+		// parent process
+		wait(&pid);
 }
 
 static int find_built_in_func2(t_all *all, t_command *command)

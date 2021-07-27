@@ -19,23 +19,16 @@ static char	*env_item_to_str(t_env_item *item)
 	size_t	i;
 	size_t	count;
 
-	i = 0;
-	count = (ft_strlen(item->key) + ft_strlen(item->value) + 2) * sizeof (char);
-	string = (char *)malloc(count);
-	count = 0;
+	i = -1;
+	count = ft_strlen(item->key) + ft_strlen(item->value) + 1;
+	string = malloc(sizeof (char) * (count + 1));
 	if (!string)
 		return (NULL);
-	while (i < ft_strlen(item->key))
-	{
+	while (++i < ft_strlen(item->key))
 		string[i] = item->key[i];
-		i++;
-	}
 	string[i++] = '=';
-	while (count++ < ft_strlen(item->value))
-	{
-		string[i++] = *item->value;
-		item->value++;
-	}
+	while (++i < count)
+		string[i] = item->value[i - ft_strlen(item->key) - 1];
 	string[i] = '\0';
 	return (string);
 }
@@ -65,6 +58,6 @@ char	**env_to_charpp(t_all *all)
 		i++;
 		all->env = all->env->next;
 	}
-	tmp[len_of_list] = "\0";
+	tmp[len_of_list] = NULL;
 	return (tmp);
 }
