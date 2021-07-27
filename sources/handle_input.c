@@ -78,7 +78,7 @@ void	handle_input(t_all *all)
 		else if (!ft_strcmp(str, "\3"))
 			handle_ctrl_c(all);
 		else if (!ft_strcmp(str, "\4"))
-			exit(g_errno);													//don't forget ctrl d
+			handle_ctrl_d();
 		else if (!ft_strcmp(str, "\177") || *str == '\b')
 			manage_backspace(all);
 		else if (unprint_symbols(str))

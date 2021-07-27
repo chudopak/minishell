@@ -26,3 +26,9 @@ void	handle_ctrl_c(t_all *all)
 		ft_putchar_fd('\n', 1);
 	tputs(save_cursor, 1, ft_putint);
 }
+
+void	handle_ctrl_d(void)
+{
+	write(2, "exit\n", 5);
+	exit(g_errno);
+}

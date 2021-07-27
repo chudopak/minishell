@@ -72,6 +72,7 @@ void		handle_input(t_all *all);
 void		get_history_comand(t_all *all, char *str);
 void		add_symbol(t_all *all, char *str, int ret, char *cmd);
 void		handle_ctrl_c(t_all *all);
+void		handle_ctrl_d(void);
 void		manage_backspace(t_all *all);
 char		*delete_symbol(t_all *all);
 int			handle_arrows(t_all *all, char **data, t_lst **last_arg);
