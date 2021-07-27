@@ -1,5 +1,26 @@
 #include "./headers/overall.h"
 
+void	print_promt(void)
+{
+	int		x;
+	char	*str;
+
+	str = "shell";
+	x = 2;
+	//if (x == 2)
+	//	ft_putstr_fd("\033[35m", 2);
+	//else if (x == 3)
+	//	ft_putstr_fd("\033[34m", 2);
+	//else if (x == 4)
+	//	ft_putstr_fd("\033[32m", 2);
+	//else if (x == 5)
+	//	ft_putstr_fd("\033[33m", 2);
+	//else if (x > 5)
+	//	ft_putstr_fd("\033[31m", 2);
+	//ft_putstr_fd(str, 2);
+	ft_putstr_fd(" \033[31m>>>\033[0m ", 2);
+}
+
 static void	set_all(t_all *all, char **envp)
 {
 	g_errno = 0;
@@ -13,8 +34,8 @@ static void	set_all(t_all *all, char **envp)
 	all->env = NULL;
 	all->stdout_tmp = dup(STDOUT_FILENO);
 	all->stdin_tmp = dup(STDIN_FILENO);
-	//signal(SIGINT, handle_signals);
-	//signal(SIGQUIT, handle_signals);
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, signal_handler);
 	ioctl(1, TIOCGWINSZ, &all->win);
 	set_history(all);
 	environment_to_struct(&(all->env), envp);
@@ -36,7 +57,7 @@ int	main(int ac, char **av, char **envp)
 	set_all(&all, envp);
 	while (1)
 	{
-		ft_putstr_fd(">", STDOUT_FILENO);
+		print_promt();
 		all.term.c_lflag &= ~(ECHO);
 		all.term.c_lflag &= ~(ICANON);
 		all.term.c_lflag &= ~(ISIG);
