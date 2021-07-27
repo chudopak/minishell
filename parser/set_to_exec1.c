@@ -43,12 +43,13 @@ void	set_token_pipes(t_all *all, t_command *command, char symbol)
 	}
 }
 
-t_command	set_token(t_all *all, char symbol)
+t_command	set_token(t_all *all, t_lst *args, char symbol)
 {
 	t_command	command;
 
 	command.cmd = NULL;
 	set_token_pipes(all, &command, symbol);
+	command.path = set_command_path(args->str);
 	command.redirectin = -1;
 	command.redirectout = -1;
 	return (command);

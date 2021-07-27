@@ -67,7 +67,7 @@ int	set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data)
 {
 	t_command	command;
 
-	command = set_token(all, **data);
+	command = set_token(all, *args, **data);
 	if (check_last_arg_for_null(*last_arg))
 		errors("Error: malloc error in \"set_to_exec\".\n", BAD_MALLOC);
 	command.cmd = convert_to_array(*args);

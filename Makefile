@@ -16,6 +16,7 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/set_to_exec.c \
 			parser/set_to_exec1.c \
 			parser/set_fd_for_redirect.c \
+			parser/set_to_exec_path.c \
 			parser/parser2.c
 
 UTILS=		utils/env_utils.c \
