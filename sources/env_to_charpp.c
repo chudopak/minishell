@@ -47,7 +47,7 @@ char	**env_to_charpp(t_all *all)
 	int 	i;
 
 	i = 0;
-	if (all->envp_copy)
+	if (all->envp_copy != NULL)
 		free_map(all->envp_copy);
 	len_of_list = ft_env_list_size(all->env);
 	tmp = (char **)malloc((sizeof (char *) * len_of_list + 1));
