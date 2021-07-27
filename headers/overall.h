@@ -80,6 +80,7 @@ int			set_to_exec(t_all *all, t_lst **args,
 				t_lst **last_arg, char **data);
 void		copy_envp(t_all *all, char **envp);
 void		set_path(t_env_list *env, char **path);
+void		print_promt(void);
 /*
 ** history
 */
@@ -185,5 +186,10 @@ t_env_item	*new_env_item(char *key, int id, char *value);
 t_env_list	*new_env_list(t_env_item *env_item);
 void		env_list_add_back(t_env_list **env_list, t_env_list *new);
 void		free_env_item(t_env_item *item);
+
+/*
+** signal handle function
+*/
+void		signal_handler(int signal_code);
 
 #endif

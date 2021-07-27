@@ -51,7 +51,8 @@ SOURCES=	sources/handle_input.c \
 			sources/exec.c \
 			sources/pipes_utils.c \
 			sources/redirect_utils.c \
-			sources/env_to_charpp.c
+			sources/env_to_charpp.c \
+			sources/signal_handler.c
 
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c

@@ -1,5 +1,11 @@
 #include "../headers/overall.h"
 
+static void	print_promt_and_new_line(void)
+{
+	ft_putchar_fd('\n', 1);
+	print_promt();
+}
+
 void	handle_ctrl_c(t_all *all)
 {
 	if (all->stroller->cmd)
@@ -23,7 +29,7 @@ void	handle_ctrl_c(t_all *all)
 		}
 	}
 	else
-		ft_putchar_fd('\n', 1);
+		print_promt_and_new_line();
 	tputs(save_cursor, 1, ft_putint);
 }
 
