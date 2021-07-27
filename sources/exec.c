@@ -12,7 +12,7 @@ void launch_exec(t_all *all, char **args, t_command *command)
 		puterror2("command not found", ": ", STDOUT_FILENO);
 		return ;
 	}
-	all->envp_copy = env_to_charpp(all);
+//	all->envp_copy = env_to_charpp(all);
 	pid = fork();
 	if (pid == 0)
 	{
