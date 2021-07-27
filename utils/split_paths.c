@@ -30,6 +30,9 @@ char	*split_path(t_all *all, t_command *command)
 	char		*correct_path;
 	struct stat	buf;
 
+	correct_path = set_command_path(command->cmd[0]);
+	if (correct_path)
+		return (correct_path);
 	splitted = ft_split(all->path, ':');
 	if (!splitted)
 		return (NULL);

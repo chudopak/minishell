@@ -155,7 +155,7 @@ int			syntax_error_checker(char *data);
 */
 void		clear_leftover(t_command *command, t_lst **args);
 int			check_last_arg_for_null(t_lst *last_arg);
-t_command	set_token(t_all *all, t_lst *args, char symbol);
+t_command	set_token(t_all *all, char symbol);
 void		set_token_pipes(t_all *all, t_command *command, char symbol);
 int			set_fd(t_command *command, char *redir_type, char *file_name);
 int			set_fd_for_redirect(t_lst *args, t_command *command);
