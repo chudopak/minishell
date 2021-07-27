@@ -20,7 +20,8 @@ PARSER=		parser/auxiliary_parser.c \
 			parser/parser2.c
 
 UTILS=		utils/env_utils.c \
-			utils/split_paths.c
+			utils/split_paths.c \
+			utils/exec_utils.c
 
 BUILT_IN=	built_in/ft_cd.c \
 			built_in/ft_echo.c \

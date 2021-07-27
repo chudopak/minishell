@@ -20,7 +20,7 @@ static char	*env_item_to_str(t_env_item *item)
 	size_t	count;
 
 	i = 0;
-	count = (ft_strlen(item->key) + ft_strlen(item->value) + 1) * sizeof (char);
+	count = (ft_strlen(item->key) + ft_strlen(item->value) + 2) * sizeof (char);
 	string = (char *)malloc(count);
 	count = 0;
 	if (!string)
@@ -47,6 +47,8 @@ char	**env_to_charpp(t_all *all)
 	int 	i;
 
 	i = 0;
+	if (all->envp_copy)
+		free_map(all->envp_copy);
 	len_of_list = ft_env_list_size(all->env);
 	tmp = (char **)malloc((sizeof (char *) * len_of_list + 1));
 	if (!tmp)

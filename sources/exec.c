@@ -12,11 +12,12 @@ void launch_exec(t_all *all, char **args, t_command *command)
 		puterror2("command not found", ": ", STDOUT_FILENO);
 		return ;
 	}
+//	all->envp_copy = env_to_charpp(all);
 	pid = fork();
 	if (pid == 0)
 	{
 		// child process
-		if (command->path)
+		if (command->path != NULL)
 		{
 			if (execve(command->path, args, all->envp_copy) == -1)
 				g_errno = errno;
@@ -79,7 +80,6 @@ static int find_built_in_func(t_all *all, t_command *command)
 
 void distribution_to_exec(t_all *all, t_command *command)
 {
-	all->envp_copy = env_to_charpp(all);
 	check_right_pipe(all, command);
 	open_redirect(all, command);
 	if (!command->cmd[0])
@@ -88,4 +88,5 @@ void distribution_to_exec(t_all *all, t_command *command)
 		launch_exec(all, command->cmd, command);
 	close_redirect(all, command);
 	check_left_pipe(all, command);
+	free_command(command, all);
 }
