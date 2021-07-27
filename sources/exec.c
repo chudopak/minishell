@@ -6,7 +6,7 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	char *correct_path;
 
 	correct_path = split_path(all, command);
-	if (!correct_path && !command->path)
+	if (!correct_path)
 	{
 		ft_putstr_fd(*command->cmd, STDOUT_FILENO);
 		puterror2("command not found", ": ", STDOUT_FILENO);
@@ -17,12 +17,7 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	if (pid == 0)
 	{
 		// child process
-		if (command->path != NULL)
-		{
-			if (execve(command->path, args, all->envp_copy) == -1)
-				g_errno = errno;
-		}
-		else if (execve(correct_path, args, all->envp_copy) == -1)
+		if (execve(correct_path, args, all->envp_copy) == -1)
 			g_errno = errno;
 		exit(g_errno);
 	}
@@ -88,5 +83,5 @@ void distribution_to_exec(t_all *all, t_command *command)
 		launch_exec(all, command->cmd, command);
 	close_redirect(all, command);
 	check_left_pipe(all, command);
-	free_command(command, all);
+//	free_command(command, all);
 }
