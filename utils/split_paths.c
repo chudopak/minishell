@@ -15,7 +15,7 @@ int	find_name_len(const char *str)
 	return (len);
 }
 
-static void	free_map(char **map)
+void	free_map(char **map)
 {
 	while (*map)
 	{
