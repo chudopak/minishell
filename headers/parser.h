@@ -48,10 +48,12 @@ int		lst_size(t_lst *lst);
 void	lst_clear(t_lst *lst);
 void	lst_delone(t_lst *lst);
 char	*char_join(char **arg, char symbol, int arg_size);
-int		special_symbol(char **arg, char **data, int *arg_size, t_env_list **env);
+int		special_symbol(char **arg, char **data,
+			int *arg_size, t_env_list **env);
 int		double_quotes(char **arg, char **data, int *arg_size, t_env_list **env);
 int		dollar(char **arg, char **data, int *arg_size, t_env_list **env);
-int		get_env_ergument(char **arg, char **data, int *arg_size, t_env_list **env);
+int		get_env_ergument(char **arg, char **data,
+			int *arg_size, t_env_list **env);
 void	skip_unnecessary_symbols(char **data, t_env_list *tmp);
 int		add_matched_argument(char **arg, char *env_arg, int *arg_size);
 int		backslash_double_quotes(char **arg, char **data, int *arg_size);

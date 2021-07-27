@@ -35,7 +35,7 @@ typedef struct s_history
 	struct s_history	*prev;
 }						t_history;
 
-typedef struct	s_command
+typedef struct s_command
 {
 	char		**cmd;
 	char		*path;
@@ -45,7 +45,7 @@ typedef struct	s_command
 	int			redirectout;
 }				t_command;
 
-typedef struct	s_all
+typedef struct s_all
 {
 	t_env_list		*env;
 	t_history		*current_cmd;
@@ -53,12 +53,12 @@ typedef struct	s_all
 	t_history		*stroller;
 	struct termios	term;
 	struct termios	term_default_set;
-	struct winsize 	win;
+	struct winsize	win;
 	char			*term_name;
 	char			*path;
-	int 			fd[2];
-	int 			stdout_tmp;
-	int 			stdin_tmp;
+	int				fd[2];
+	int				stdout_tmp;
+	int				stdin_tmp;
 	char			**envp_copy;
 	int				cursor_pos;
 	int				writen_symblos;
@@ -67,7 +67,7 @@ typedef struct	s_all
 	int				redirect;
 }				t_all;
 
-int			parser(char *data, /*t_lst **env*/ t_all *all);
+int			parser(char *data, t_all *all);
 void		handle_input(t_all *all);
 void		get_history_comand(t_all *all, char *str);
 void		add_symbol(t_all *all, char *str, int ret, char *cmd);
@@ -76,7 +76,8 @@ void		handle_ctrl_d(void);
 void		manage_backspace(t_all *all);
 char		*delete_symbol(t_all *all);
 int			handle_arrows(t_all *all, char **data, t_lst **last_arg);
-int			set_to_exec(t_all *all, t_lst **args, t_lst **last_arg, char **data);
+int			set_to_exec(t_all *all, t_lst **args,
+				t_lst **last_arg, char **data);
 void		copy_envp(t_all *all, char **envp);
 void		set_path(t_env_list *env, char **path);
 /*
@@ -169,13 +170,13 @@ int			argument_is_absolut_path(char *arg);
 ** parser for better understanding what function doing
 */
 void		prepare_to_exec(t_all *all, t_lst **args,
-							t_lst **last_arg, char **data);
+				t_lst **last_arg, char **data);
 void		handle_space_arrow(t_all *all, char **data,
-							t_lst **last_arg, int *arg_size);
+				t_lst **last_arg, int *arg_size);
 void		handle_special_symbol(t_all *all, char **arg,
-							char **data, int *arg_size);
+				char **data, int *arg_size);
 void		add_usual_symbol(t_lst **last_arg,
-							char **data, int *arg_size);
+				char **data, int *arg_size);
 
 /*
 ** utils for interact with env structure
