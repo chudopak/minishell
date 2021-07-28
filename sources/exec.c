@@ -31,7 +31,10 @@ void launch_exec(t_all *all, char **args, t_command *command)
 		puterror("fork failed", 1);
 	else
 		// parent process
+	{
+		//all->term = all->term_default_set;
 		wait(&pid);
+	}
 }
 
 static int find_built_in_func2(t_all *all, t_command *command)

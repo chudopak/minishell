@@ -38,6 +38,7 @@ static void	prepare_parsing(t_all *all)
 	all->term.c_lflag |= (ECHO);
 	all->term.c_lflag |= (ICANON);
 	all->term.c_lflag |= (ISIG);
+	tcsetattr(0, TCSANOW, &all->term);
 	all->writen_symblos = 0;
 	all->cursor_pos = 0;
 	if (all->stroller != all->current_cmd)
