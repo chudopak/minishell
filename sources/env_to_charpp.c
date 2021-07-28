@@ -15,9 +15,9 @@ int	ft_env_list_size(t_env_list *lst)
 
 static char	*env_item_to_str(t_env_item *item)
 {
-	char 	*string;
-	int 	i;
-	int 	count;
+	char	*string;
+	int		i;
+	int		count;
 
 	i = -1;
 	count = ft_strlen(item->key) + ft_strlen(item->value) + 1;
@@ -37,7 +37,7 @@ char	**env_to_charpp(t_all *all)
 {
 	char	**tmp;
 	int		len_of_list;
-	int 	i;
+	int		i;
 
 	i = 0;
 	len_of_list = ft_env_list_size(all->env);

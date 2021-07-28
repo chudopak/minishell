@@ -28,11 +28,20 @@ void	free_map(char **map)
 	free(tmp);
 }
 
+static char	*for_norm1(char **splitted, t_command *command)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(*splitted, "/");
+	tmp = join_and_free(tmp, command->cmd[0]);
+	return (tmp);
+}
+
 char	*split_path(t_all *all, t_command *command)
 {
 	char		**splitted;
 	char		*correct_path;
-	char 		**tmp;
+	char		**tmp;
 	struct stat	buf;
 
 	correct_path = set_command_path(command->cmd[0]);
@@ -44,8 +53,7 @@ char	*split_path(t_all *all, t_command *command)
 	tmp = splitted;
 	while (*splitted)
 	{
-		correct_path = ft_strjoin(*splitted, "/");
-		correct_path = join_and_free(correct_path, command->cmd[0]);
+		correct_path = for_norm1(splitted, command);
 		if (stat(correct_path, &buf) == 0)
 		{
 			free_map(tmp);

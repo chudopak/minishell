@@ -1,6 +1,6 @@
 #include "../headers/overall.h"
 
-void open_pipes(t_all *all, t_command *command)
+void	open_pipes(t_all *all, t_command *command)
 {
 	if (command->pipeout)
 	{
@@ -12,7 +12,7 @@ void open_pipes(t_all *all, t_command *command)
 	}
 }
 
-void check_left_pipe(t_all *all, t_command *command)
+void	check_left_pipe(t_all *all, t_command *command)
 {
 	if (command->pipeout)
 	{
@@ -24,7 +24,7 @@ void check_left_pipe(t_all *all, t_command *command)
 		dup2(all->stdin_tmp, STDIN_FILENO);
 }
 
-void check_right_pipe(t_all *all, t_command *command)
+void	check_right_pipe(t_all *all, t_command *command)
 {
 	if (command->pipeout)
 	{

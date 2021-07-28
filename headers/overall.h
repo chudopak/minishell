@@ -109,7 +109,6 @@ void		ft_export(char **args, t_all *all);
 void		distribution_to_exec(t_all *all, t_command *command);
 void		open_pipes(t_all *all, t_command *command);
 void		open_redirect(t_all *all, t_command *command);
-void		free_command(t_command *command, t_all *all);
 void		close_redirect(t_all *all, t_command *command);
 void		check_right_pipe(t_all *all, t_command *command);
 void		check_left_pipe(t_all *all, t_command *command);

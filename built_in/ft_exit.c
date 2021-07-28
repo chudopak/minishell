@@ -26,7 +26,7 @@ static int	args_len(char **args)
 
 void	ft_exit(char **args)
 {
-	ft_putstr_fd("exit\nIt was nice to see you\n", 2);
+	ft_putstr_fd("exit\n", 2);
 	if (!*args || !args)
 		exit(g_errno);
 	if (args_len(args) > 1)
