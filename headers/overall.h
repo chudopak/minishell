@@ -82,8 +82,6 @@ void		copy_envp(t_all *all, char **envp);
 void		set_path(t_env_list *env, char **path);
 void		print_promt(void);
 
-char	*char_join1(char *arg, char symbol, int arg_size);
-
 /*
 ** history
 */
