@@ -13,6 +13,8 @@ void	rm_node(t_all *all)
 
 	tmp = all->head_history->next;
 	tmp->prev = NULL;
+	if (all->head_history->cmd)
+		free(all->head_history->cmd);
 	free(all->head_history);
 	all->head_history = tmp;
 	all->cmd_in_history--;

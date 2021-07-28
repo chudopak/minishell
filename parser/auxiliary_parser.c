@@ -37,4 +37,5 @@ void	free_cmd(char **cmd)
 		cmd++;
 	}
 	free(tmp);
+	cmd = NULL;
 }

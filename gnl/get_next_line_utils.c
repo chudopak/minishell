@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "../headers/overall.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -27,36 +27,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (d);
 }
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *str)
-{
-	unsigned int	i;
-	char			*copy;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	copy = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (!copy)
-		return (NULL);
-	while (str[i])
-	{
-		copy[i] = str[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
-}
-
 void	end_case(char **buf, char **ostatok, char **line)
 {
 	if (*ostatok)
@@ -70,27 +40,27 @@ void	end_case(char **buf, char **ostatok, char **line)
 	free(*buf);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char			*sub;
-	unsigned int	i;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	if (ft_strlen(s) < start)
-	{
-		sub = (char *)malloc(sizeof(char));
-		sub[i] = '\0';
-		return (sub);
-	}
-	if (ft_strlen(s) < len)
-		len = ft_strlen(s);
-	sub = (char *)malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	while (i < len && s[start])
-		sub[i++] = s[start++];
-	sub[i] = '\0';
-	return (sub);
-}
+//char	*ft_substr(char const *s, unsigned int start, size_t len)
+//{
+//	char			*sub;
+//	unsigned int	i;
+//
+//	if (!s)
+//		return (NULL);
+//	i = 0;
+//	if (ft_strlen(s) < start)
+//	{
+//		sub = (char *)malloc(sizeof(char));
+//		sub[i] = '\0';
+//		return (sub);
+//	}
+//	if (ft_strlen(s) < len)
+//		len = ft_strlen(s);
+//	sub = (char *)malloc(sizeof(char) * (len + 1));
+//	if (!sub)
+//		return (NULL);
+//	while (i < len && s[start])
+//		sub[i++] = s[start++];
+//	sub[i] = '\0';
+//	return (sub);
+//}

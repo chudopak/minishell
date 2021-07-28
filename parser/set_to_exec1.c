@@ -3,7 +3,10 @@
 void	clear_leftover(t_command *command, t_lst **args)
 {
 	free_cmd(command->cmd);
+	if (command->path)
+		free(command->path);
 	lstclear_char(args);
+	args = NULL;
 	if (command->redirectin != -1)
 		close(command->redirectin);
 	if (command->redirectout != -1)
@@ -51,5 +54,6 @@ t_command	set_token(t_all *all, char symbol)
 	set_token_pipes(all, &command, symbol);
 	command.redirectin = -1;
 	command.redirectout = -1;
+	command.path = NULL;
 	return (command);
 }

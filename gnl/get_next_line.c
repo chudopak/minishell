@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "../headers/overall.h"
 
 static int	check_line(char *ostatok, char **line, char *buf)
 {

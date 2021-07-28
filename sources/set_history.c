@@ -66,6 +66,7 @@ void	set_history(t_all *all)
 		if (line)
 			all->current_cmd->cmd = ft_strdup(line);
 		free(line);
+		line = NULL;
 	}
 	if (line && ft_strlen(line))
 	{
