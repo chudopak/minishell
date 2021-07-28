@@ -46,9 +46,7 @@ static void	prepare_parsing(t_all *all)
 		if (all->current_cmd->cmd)
 			free(all->current_cmd->cmd);
 		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
-		free(all->stroller->cmd);
 	}
-	all->stroller = NULL;
 	if (all->current_cmd->cmd && *all->current_cmd->cmd)
 		push_writen_in_history(all);
 	write(1, "\n", 1);
