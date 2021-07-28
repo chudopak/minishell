@@ -28,6 +28,7 @@ char	*split_path(t_all *all, t_command *command)
 {
 	char		**splitted;
 	char		*correct_path;
+	char 		**tmp;
 	struct stat	buf;
 
 	correct_path = set_command_path(command->cmd[0]);
@@ -36,17 +37,19 @@ char	*split_path(t_all *all, t_command *command)
 	splitted = ft_split(all->path, ':');
 	if (!splitted)
 		return (NULL);
+	tmp = splitted;
 	while (*splitted)
 	{
 		correct_path = ft_strjoin(*splitted, "/");
-		correct_path = ft_strjoin(correct_path, command->cmd[0]);
+		correct_path = join_and_free(correct_path, command->cmd[0]);
 		if (stat(correct_path, &buf) == 0)
 		{
-			free_map(splitted);
+			free_map(tmp);
 			return (correct_path);
 		}
+		free(correct_path);
 		splitted++;
 	}
-	free(correct_path);
+	free_map(tmp);
 	return (NULL);
 }

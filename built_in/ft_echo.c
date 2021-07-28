@@ -11,12 +11,13 @@ void	ft_echo(char **args)
 {
 	int	flag_n;
 
-	flag_n = is_n(*args);
+	args++;
 	if (!*args)
 	{
 		ft_putchar_fd('\n', 1);
 		return ;
 	}
+	flag_n = is_n(*args);
 	while (*args && ft_strncmp("-n", *args, 2) == 0)
 		args++;
 	while (*args)

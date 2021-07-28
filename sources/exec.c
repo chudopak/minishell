@@ -21,8 +21,8 @@ void launch_exec(t_all *all, char **args, t_command *command)
 		{
 			ft_putstr_fd(*command->cmd, STDOUT_FILENO);
 			puterror2("command not found", ": ", STDOUT_FILENO);
-			return ;
 			g_errno = errno;
+			return ;
 		}
 		exit(g_errno);
 	}
@@ -32,8 +32,8 @@ void launch_exec(t_all *all, char **args, t_command *command)
 	else
 		// parent process
 	{
-		//all->term = all->term_default_set;
 		wait(&pid);
+		free(correct_path);
 	}
 }
 
@@ -60,7 +60,7 @@ static int find_built_in_func(t_all *all, t_command *command)
 {
 	if (!ft_strcmp(command->cmd[0], "echo"))
 	{
-		ft_echo(&command->cmd[1]);
+		ft_echo(&command->cmd[0]);
 		return (1);
 	}
 	else if (!ft_strcmp(command->cmd[0], "cd"))
