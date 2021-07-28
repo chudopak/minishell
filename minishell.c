@@ -6,19 +6,19 @@ void	print_promt(void)
 	char	*str;
 
 	str = "shell";
-	x = 2;
-	//if (x == 2)
-	//	ft_putstr_fd("\033[35m", 2);
-	//else if (x == 3)
-	//	ft_putstr_fd("\033[34m", 2);
-	//else if (x == 4)
-	//	ft_putstr_fd("\033[32m", 2);
-	//else if (x == 5)
-	//	ft_putstr_fd("\033[33m", 2);
-	//else if (x > 5)
-	//	ft_putstr_fd("\033[31m", 2);
-	//ft_putstr_fd(str, 2);
-	ft_putstr_fd(" \033[31m>>>\033[0m ", 2);
+	x = 6;
+	if (x == 2)
+		ft_putstr_fd("\033[35m", 2);
+	else if (x == 3)
+		ft_putstr_fd("\033[34m", 2);
+	else if (x == 4)
+		ft_putstr_fd("\033[32m", 2);
+	else if (x == 5)
+		ft_putstr_fd("\033[33m", 2);
+	else if (x > 5)
+		ft_putstr_fd("\033[36m", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\033[31m~\033[0m ", 2);
 }
 
 static void	set_all(t_all *all, char **envp)
