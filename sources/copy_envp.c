@@ -34,7 +34,7 @@ void	copy_envp(t_all *all, char **envp)
 
 	all->envp_copy = NULL;
 	amount_of_variables = count_variables(envp);
-	all->envp_copy = malloc(sizeof(char*) * (amount_of_variables + 1));
+	all->envp_copy = malloc(sizeof(char *) * (amount_of_variables + 1));
 	if (!all->envp_copy)
 		return ;
 	all->envp_copy[amount_of_variables] = NULL;
