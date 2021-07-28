@@ -43,8 +43,10 @@ static void	prepare_parsing(t_all *all)
 	all->cursor_pos = 0;
 	if (all->stroller != all->current_cmd)
 	{
-		free(all->current_cmd->cmd);
+		if (all->current_cmd->cmd)
+			free(all->current_cmd->cmd);
 		all->current_cmd->cmd = ft_strdup(all->stroller->cmd);
+		free(all->stroller->cmd);
 	}
 	all->stroller = NULL;
 	if (all->current_cmd->cmd && *all->current_cmd->cmd)

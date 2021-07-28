@@ -6,6 +6,8 @@ void	prepare_to_exec(t_all *all, t_lst **args,
 	if ((*last_arg)->str == NULL)
 		put_endline(last_arg);
 	set_to_exec(all, args, last_arg, data);
+	if (*args)
+		lstclear_char(args);
 }
 
 void	handle_space_arrow(t_all *all, char **data,
