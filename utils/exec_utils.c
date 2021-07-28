@@ -7,4 +7,5 @@ void	free_command(t_command *command, t_all *all)
 			free(command->path);
 	if (all->envp_copy != NULL)
 		free_map(all->envp_copy);
+	free(command);
 }
