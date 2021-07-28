@@ -17,11 +17,15 @@ int	find_name_len(const char *str)
 
 void	free_map(char **map)
 {
+	char	**tmp;
+
+	tmp = map;
 	while (*map)
 	{
 		free(*map);
 		map++;
 	}
+	free(tmp);
 }
 
 char	*split_path(t_all *all, t_command *command)
