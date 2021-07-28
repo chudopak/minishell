@@ -57,7 +57,7 @@ SOURCES=	sources/handle_input.c \
 GNL=		gnl/get_next_line.c \
 			gnl/get_next_line_utils.c
 
-SRC=		$(PARSER) ${SOURCES} ${GNL} ${UTILS} ${ENV_FUNC} ${BUILT_IN} minishell.c
+SRC=		$(PARSER) ${SOURCES} ${GNL} ${UTILS} ${ENV_FUNC} ${BUILT_IN}  minishell.c
 
 OBJ=		$(PARSER:.c=.o) $(SOURCES:.c=.o) $(GNL:.c=.o) $(UTILS:.c=.o) $(ENV_FUNC:.c=.o) $(BUILT_IN:.c=.o) minishell.o
 
@@ -69,7 +69,7 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C libft/
 
-$(NAME): $(LIBFT) $(OBJ) $(HEADER)
+$(NAME): $(LIBFT) $(OBJ)
 	gcc $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -ltermcap
 
 clean:

@@ -10,6 +10,7 @@ void	signal_handler(int signal_code)
 		if (signal_code == SIGINT)
 		{
 			g_errno = 130;
+			write(1, "\n", 1);
 			ft_putendl(NULL);
 		}
 		else if (signal_code == SIGQUIT)

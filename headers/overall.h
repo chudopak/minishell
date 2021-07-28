@@ -24,7 +24,7 @@
 # define PATH_MISSING 4
 
 /* History limit*/
-# define HISTORY_LIMIT 5
+# define HISTORY_LIMIT 99
 
 int				g_errno;
 
