@@ -38,14 +38,13 @@ char	*split_path(t_all *all, t_command *command)
 		return (NULL);
 	while (*splitted)
 	{
-		correct_path = join_and_free(*splitted, "/");
-		correct_path = join_and_free(correct_path, command->cmd[0]);
+		correct_path = ft_strjoin(*splitted, "/");
+		correct_path = ft_strjoin(correct_path, command->cmd[0]);
 		if (stat(correct_path, &buf) == 0)
 		{
 			free_map(splitted);
 			return (correct_path);
 		}
-		free(correct_path);
 		splitted++;
 	}
 	free(correct_path);
