@@ -91,5 +91,5 @@ void distribution_to_exec(t_all *all, t_command *command)
 		launch_exec(all, command->cmd, command);
 	close_redirect(all, command);
 	check_left_pipe(all, command);
-//	free_command(command, all);
+	free_command(command, all);
 }
