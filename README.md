@@ -22,14 +22,14 @@ No memory leaks.
     * `unset` without any options.
     * `env` without any options and any arguments ◦ exit without any options.
 
-* ; in the command should separate commands like in bash.
-* ’ and " should work like in bash except for multiline commands.
-* Redirections <, >, >> should work like in bash except for file descriptor aggregation.
-* Pipes | should work like in bash except for multiline commands.
-* Environment variables ($ followed by characters) should work like in bash.
-* $? should work like in bash.
-* ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash.
- *Use up and down arrows to navigate through the command using termcap (mandatory) history which we will then be able to edit (at least like we can for classic lines) if we feel like it (the line, not the history).
+* `;` in the command should separate commands like in bash.
+* `’` and `"` should work like in bash except for multiline commands.
+* Redirections `<, >, >>` should work like in bash except for file descriptor aggregation.
+* Pipes `|` should work like in bash except for multiline commands.
+* `Environment variables` ($ followed by characters) should work like in bash.
+* `$?` should work like in bash.
+* `ctrl-C`, `ctrl-D` and `ctrl-\` should have the same result as in bash.
+ * Use up and down arrows to navigate through the command using termcap (mandatory) history which we will then be able to edit (at least like we can for classic lines) if we feel like it (the line, not the history).
 
 # Using
 ```
