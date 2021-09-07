@@ -2,7 +2,7 @@
 ## Description
 With a partner, we wrote a simple shell.
 
-In this project, we use some functions from my libft library, as well as some functions we modify.
+In this project, we use some functions from [my libft library](https://github.com/proalmaz/libft), as well as some functions we modify.
 
 The compilation was performed as follows: gcc -Wall -Wextra -Werror.
 
