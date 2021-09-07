@@ -35,4 +35,5 @@ No memory leaks.
 git clone https://github.com/proalmaz/minishell.git minishell
 cd minishell
 make
+./minishell
 ```
